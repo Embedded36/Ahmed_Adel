@@ -126,8 +126,6 @@ extern Keypad_u16Switches KEYPAD_Keypad_u16SwitchesRead(void)
 	  	    }
 
 
-
-
 	  	/*Comment!: Check if code is out of bouncing state*/
 	  		else if (local_u8Bouncing_Flag != KEYPAD_u8FLAG_UP)
 	  		    {
@@ -188,8 +186,6 @@ extern Keypad_u16Switches KEYPAD_Keypad_u16SwitchesRead(void)
 	  		    }
 
 	  		}
-
-
 
 	}
 
