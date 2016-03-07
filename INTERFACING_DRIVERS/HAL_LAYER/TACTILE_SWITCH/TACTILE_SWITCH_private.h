@@ -37,7 +37,7 @@ typedef union
 #define TACTILE_FLAG_INITIAL_DOWN          0
 #define TACTILE_SWITCH_BOUNCING_FLAG_DOWN  0
 #define TACTILE_SWITCH_FLAG_UP             1
-#define TACTILE_SWITCH_COUNTER_LIMIT       3
+#define TACTILE_SWITCH_COUNTER_LIMIT       1
 
 /*******************************************************/
 /*****************  Private Functions  *****************/
