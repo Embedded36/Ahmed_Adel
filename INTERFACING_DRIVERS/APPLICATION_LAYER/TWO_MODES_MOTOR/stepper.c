@@ -9,7 +9,7 @@
 #define CONTINOUS_MODE             2
 #define CLICK_MODE                 3
 #define WAITING_FOR_SWITCH_RELEASE 4
-#define TIME_LIMIT                 70
+#define TIME_LIMIT                 50
 #define LEFT                       0
 #define RIGHT                      1
 #define SH_CP                      DIO_u8PIN24
@@ -21,7 +21,7 @@
 #define STOP_SWITCH_INDEX          3
 #define GET_BIT(Reg,Bit_no)        (((Reg)>>(Bit_no))&1)
 
-    /*Comment!:Rotate Stepper motor one step */
+/*Comment!:Rotate Stepper motor one step */
 void Stepper_voidRotate(void);
 
 /*Comment!:return index of pressed switch  */
@@ -118,177 +118,174 @@ int main()
 	    DIO_u8WritePinVal(ST_CP, DIO_u8HIGH);
 	    DIO_u8WritePinVal(ST_CP, DIO_u8LOW);
 
-
-
 	    }
 
 	/*comment!: end of displaying one column*/
 
 	/*Comment!:read Keypad*/
-		    keypad = KEYPAD_Keypad_u16SwitchesRead();
+	keypad = KEYPAD_Keypad_u16SwitchesRead();
 
-		    /*Comment!:Check if switch pressed */
-		    if (keypad.KEYPAD_u16Switches)
-			{
-			/*Comment!:get number of pressed switch */
-			local_u8Switch_Pressed_num = Stepper_16_Switch_Number(keypad.KEYPAD_u16Switches);
+	/*Comment!:Check if switch pressed */
+	if (keypad.KEYPAD_u16Switches)
+	    {
+	    /*Comment!:get number of pressed switch */
+	    local_u8Switch_Pressed_num = Stepper_16_Switch_Number(keypad.KEYPAD_u16Switches);
 
-			}
-		    else
-			{
+	    }
+	else
+	    {
 
-			}
+	    }
 
-		    if ((local_u8Switch_Pressed_num < local_stepper_counter)
-			    && local_u8Switch_Pressed_num != STOP_SWITCH_INDEX)
+	if ((local_u8Switch_Pressed_num < local_stepper_counter) && local_u8Switch_Pressed_num != STOP_SWITCH_INDEX)
 
-			{
+	    {
 
-			 Stepper_voidRotate();
+	    Stepper_voidRotate();
 
-			local_stepper_counter = 0;
+	    local_stepper_counter = 0;
 
-			}
-		    else if (local_u8Switch_Pressed_num != STOP_SWITCH_INDEX)
-			{
+	    }
+	else if (local_u8Switch_Pressed_num != STOP_SWITCH_INDEX)
+	    {
 
-			local_stepper_counter++;
+	    local_stepper_counter++;
 
-			}
-		    else
-			{
+	    }
+	else
+	    {
 
-			}
+	    }
 
-		    /*Comment!:read switch */
-		    TACTILE_SWITCH_u8Read(TACTILE_SWITCH_u8SWITCH1ID, &local_u8SwitchRead);
+	/*Comment!:read switch */
+	TACTILE_SWITCH_u8Read(TACTILE_SWITCH_u8SWITCH1ID, &local_u8SwitchRead);
 
-		    switch (local_u8state)
+	switch (local_u8state)
 
-			{
+	    {
 
-		    case STARTING_POINT:
+	case STARTING_POINT:
 
-			if (local_u8SwitchRead == TACTILE_SWITCH_u8PRESSED)
-			    {
-			    /*Comment!:Rotate Motor */
-			    DIO_u8WritePinVal(DIO_u8PIN8, local_u8MotorPin1Val[local_Direction_Flag]);
+	    if (local_u8SwitchRead == TACTILE_SWITCH_u8PRESSED)
+		{
+		/*Comment!:Rotate Motor */
+		DIO_u8WritePinVal(DIO_u8PIN8, local_u8MotorPin1Val[local_Direction_Flag]);
 
-			    DIO_u8WritePinVal(DIO_u8PIN9, !local_u8MotorPin1Val[local_Direction_Flag]);
+		DIO_u8WritePinVal(DIO_u8PIN9, !local_u8MotorPin1Val[local_Direction_Flag]);
 
-			    /*Comment!:Change State */
-			    local_u8state = SWITCH_PRESSED;
+		/*Comment!:Change State */
+		local_u8state = SWITCH_PRESSED;
 
-			    /*Comment!:Change direction at display */
-			    local_Display_Flag = local_Direction_Flag;
+		/*Comment!:Change direction at display */
+		local_Display_Flag = local_Direction_Flag;
 
-			    /*Comment!:Reset Time Counter */
-			    local_u16Counter = 0;
-			    }
+		/*Comment!:Reset Time Counter */
+		local_u16Counter = 0;
+		}
 
-			else if (local_u8SwitchRead != TACTILE_SWITCH_u8PRESSED)
-			    {
+	    else if (local_u8SwitchRead != TACTILE_SWITCH_u8PRESSED)
+		{
 
-			    /*Comment!:Stop motor */
-			    DIO_u8WritePinVal(DIO_u8PIN8, DIO_u8HIGH);
+		/*Comment!:Stop motor */
+		DIO_u8WritePinVal(DIO_u8PIN8, DIO_u8HIGH);
 
-			    DIO_u8WritePinVal(DIO_u8PIN9, DIO_u8HIGH);
+		DIO_u8WritePinVal(DIO_u8PIN9, DIO_u8HIGH);
 
-			    /*Comment!:Turn off dot matrix*/
-			    local_Display_Flag = DISPLAY_OFF;
-			    }
+		/*Comment!:Turn off dot matrix*/
+		local_Display_Flag = DISPLAY_OFF;
+		}
 
-			else
-			    {
+	    else
+		{
 
-			    }
+		}
 
-			break;
+	    break;
 
-		    case SWITCH_PRESSED:
+	case SWITCH_PRESSED:
 
-			/*Comment!:increment counter that represents time */
-			local_u16Counter++;
+	    /*Comment!:increment counter that represents time */
+	    local_u16Counter++;
 
-			if (local_u8SwitchRead != TACTILE_SWITCH_u8PRESSED)
-			    {
+	    if (local_u8SwitchRead != TACTILE_SWITCH_u8PRESSED)
+		{
 
-			    /*Comment!:Checking time */
-			    if (local_u16Counter <= TIME_LIMIT)
+		/*Comment!:Checking time */
+		if (local_u16Counter <= TIME_LIMIT)
 
-				{
+		    {
 
-				/*Comment!:change state*/
-				local_u8state = CONTINOUS_MODE;
+		    /*Comment!:change state*/
+		    local_u8state = CONTINOUS_MODE;
 
-				}
+		    }
 
-			    else
-				{
+		else
+		    {
 
-				/*Comment!:Change direction*/
-				local_Direction_Flag = !local_Direction_Flag;
+		    /*Comment!:Change direction*/
+		    local_Direction_Flag = !local_Direction_Flag;
 
-				/*Comment!:change state*/
-				local_u8state = STARTING_POINT;
-				}
+		    /*Comment!:change state*/
+		    local_u8state = STARTING_POINT;
+		    }
 
-			    }
+		}
 
-			else
-			    {
+	    else
+		{
 
-			    }
+		}
 
-			break;
+	    break;
 
-		    case CONTINOUS_MODE:
+	case CONTINOUS_MODE:
 
-			/*Comment!:Rotate Motor*/
-			DIO_u8WritePinVal(DIO_u8PIN8, local_u8MotorPin1Val[local_Direction_Flag]);
+	    /*Comment!:Rotate Motor*/
+	    DIO_u8WritePinVal(DIO_u8PIN8, local_u8MotorPin1Val[local_Direction_Flag]);
 
-			DIO_u8WritePinVal(DIO_u8PIN9, !local_u8MotorPin1Val[local_Direction_Flag]);
+	    DIO_u8WritePinVal(DIO_u8PIN9, !local_u8MotorPin1Val[local_Direction_Flag]);
 
-			if (local_u8SwitchRead == TACTILE_SWITCH_u8PRESSED)
-			    {
-			    /*Comment!:stop motor*/
-			    DIO_u8WritePinVal(DIO_u8PIN8, DIO_u8HIGH);
+	    if (local_u8SwitchRead == TACTILE_SWITCH_u8PRESSED)
+		{
+		/*Comment!:stop motor*/
+		DIO_u8WritePinVal(DIO_u8PIN8, DIO_u8HIGH);
 
-			    DIO_u8WritePinVal(DIO_u8PIN9, DIO_u8HIGH);
+		DIO_u8WritePinVal(DIO_u8PIN9, DIO_u8HIGH);
 
-			    /*Comment!:change state*/
-			    local_u8state = WAITING_FOR_SWITCH_RELEASE;
+		/*Comment!:change state*/
+		local_u8state = WAITING_FOR_SWITCH_RELEASE;
 
-			    }
+		}
 
-			else
-			    {
+	    else
+		{
 
-			    }
+		}
 
-			break;
+	    break;
 
-		    case WAITING_FOR_SWITCH_RELEASE:
+	case WAITING_FOR_SWITCH_RELEASE:
 
-			/*Comment!:waiting for switch release*/
-			if (local_u8SwitchRead != TACTILE_SWITCH_u8PRESSED)
-			    {
+	    /*Comment!:waiting for switch release*/
+	    if (local_u8SwitchRead != TACTILE_SWITCH_u8PRESSED)
+		{
 
-			    local_u8state = STARTING_POINT;
+		local_u8state = STARTING_POINT;
 
-			    }
+		}
 
-			else
-			    {
+	    else
+		{
 
-			    }
-			break;
+		}
+	    break;
 
-		    default:
+	default:
 
-			break;
+	    break;
 
-			}
+	    }
 
 	}
 
@@ -300,7 +297,7 @@ u8 Stepper_16_Switch_Number(u16 Copy_u16KeypadState)
 
     u8 local_u8Switch_Pressed_num;
 
-    for (u8 local_u8LoopCounter = 0; local_u8LoopCounter< 16; local_u8LoopCounter++)
+    for (u8 local_u8LoopCounter = 0; local_u8LoopCounter < 16; local_u8LoopCounter++)
 	{
 
 	if ((1 << local_u8LoopCounter) == Copy_u16KeypadState)
