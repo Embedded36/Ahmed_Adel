@@ -11,14 +11,21 @@
 #define ADC_u8INTERNAL_REFERENCE 1
 #define ADC_u8VCC                2
   
+/*Comment!: bits' numbers of ADC registers  */
 #define ADC_u8ADEN               7
 #define ADC_u8ADSC               6
 
+/*Comment!: ADC Resolution */
 #define ADC_u8EIGHT_BITS         0
 #define ADC_u8TEN_BITS           1
 
+/*Comment!: ADC number of channels */
 #define ADC_u8_NUMBER_OF_CHANNELS 8
+
+/*Comment!: Number of samples for multi shot function */
 #define ADC_u8NUMBER_OF_SAMPLES   8
+
+/*Comment!: values of ADC configuration bits */
 
 #if ADC_u8RESOLUTION==ADC_u8TEN_BITS
 
@@ -58,6 +65,7 @@
 /***************** Register Addresses ******************/
 /*******************************************************/
 
+/*Comment!:ADC Registers' addresses */
 #define ADC_u8ADMUX  ((volatile u8*)(0x27))
 #define ADC_u8ADCSRA ((volatile u8*)(0x26))
 #define ADC_u8ADCH   ((volatile u8*)(0x25))
@@ -66,6 +74,7 @@
 /*******************************************************/  
 /*****************  Private Functions  *****************/  
 /*******************************************************/  
+/*Comment!: util functions */
 #define CONC(x0,x1,x2,x3,x4,x5,x6,x7)         CONC_HELPER(x0,x1,x2,x3,x4,x5,x6,x7)
 #define CONC_HELPER(y7,y6,y5,y4,y3,y2,y1,y0)  0b##y7##y6##y5##y4##y3##y2##y1##y0
 #define CLR_BIT(Reg,Bit_no)                   ((Reg)&=(~(1<<(Bit_no))))

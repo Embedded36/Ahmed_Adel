@@ -12,6 +12,6 @@
 
 /*Comment!: Resolution of  ADC*/
 /*Range!  : ADC_u8EIGHT_BITS-ADC_u8TEN_BITS */
-#define ADC_u8RESOLUTION          ADC_u8TEN_BITS
+#define ADC_u8RESOLUTION          ADC_u8EIGHT_BITS
 
 #endif 
