@@ -42,13 +42,13 @@ u8 ADC_u8Read_Channel_One_Shot(u8 Copy_u8Channel_Num, u16* Copy_pu16Result)
 
 #if ADC_u8RESOLUTION==ADC_u8TEN_BITS
 
-	*local_pu8Result++ = *ADC_u8ADCL;
+	*(local_pu8Result++) = *ADC_u8ADCL;
 
 	*local_pu8Result = *ADC_u8ADCH;
 
 #elif ADC_u8RESOLUTION==ADC_u8EIGHT_BITS
 
-	*local_pu8Result++=*ADC_u8ADCH;
+	*(local_pu8Result++)=*ADC_u8ADCH;
 
 	*local_pu8Result=0x00;
 
@@ -109,13 +109,13 @@ u8 ADC_u8Read_Channel_Multi_Shot(u8 Copy_u8Channel_Num, u16* Copy_pu16Result)
 
 #if ADC_u8RESOLUTION==ADC_u8TEN_BITS
 
-	    *local_pu8Result++ = *ADC_u8ADCL;
+	    *(local_pu8Result++) = *ADC_u8ADCL;
 
 	    *local_pu8Result = *ADC_u8ADCH;
 
 #elif ADC_u8RESOLUTION==ADC_u8EIGHT_BITS
 
-	    *local_pu8Result++=*ADC_u8ADCH;
+	    *(local_pu8Result++)=*ADC_u8ADCH;
 
 	    *local_pu8Result=0x00;
 
@@ -196,15 +196,15 @@ u8 ADC_u8Read_Group(u16* Copy_pu16Result)
 
 #if ADC_u8RESOLUTION==ADC_u8TEN_BITS
 
-	    *local_pu8Result++ = *ADC_u8ADCL;
+	    *(local_pu8Result++) = *ADC_u8ADCL;
 
-	    *local_pu8Result++ = *ADC_u8ADCH;
+	    *(local_pu8Result++) = *ADC_u8ADCH;
 
 #elif ADC_u8RESOLUTION==ADC_u8EIGHT_BITS
 
-	    *local_pu8Result++=*ADC_u8ADCH;
+	    *(local_pu8Result++)=*ADC_u8ADCH;
 
-	    *local_pu8Result++=0x00;
+	    *(local_pu8Result++)=0x00;
 
 #else
 
