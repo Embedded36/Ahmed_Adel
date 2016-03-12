@@ -8,6 +8,7 @@
 void CHARACTER_LCD_voidInit(void)
     {
 
+    /*Comment!: Initialization sequence of lcd */
     CHARACTER_LCD_voidWriteCommand(0b00110000);
 
     voidDELAY_MS(20);
@@ -18,12 +19,12 @@ void CHARACTER_LCD_voidInit(void)
 
     CHARACTER_LCD_voidWriteCommand(0b00110000);
 
+    /*Comment!: Commands to set up features of lcd */
     CHARACTER_LCD_voidWriteCommand(0b00111100);
 
     CHARACTER_LCD_voidWriteCommand(0b00000110);
 
     CHARACTER_LCD_voidWriteCommand(0b00001100);
-
 
     return;
     }
@@ -47,8 +48,6 @@ void CHARACTER_LCD_voidWriteCommand(u8 Copy_u8Command)
 	DIO_u8WritePinVal(CHARACTER_LCD_u8Data_Pins[local_u8LoopCounter], local_u8Command_Bit);
 
 	}
-
-///delay
 
     DIO_u8WritePinVal(CHARACTER_LCD_u8ENABLE, DIO_u8LOW);
 
@@ -74,8 +73,6 @@ void CHARACTER_LCD_voidWriteData(u8 Copy_u8Data)
 	DIO_u8WritePinVal(CHARACTER_LCD_u8Data_Pins[local_u8LoopCounter], local_u8Data_Bit);
 
 	}
-
-///delay
 
     DIO_u8WritePinVal(CHARACTER_LCD_u8ENABLE, DIO_u8LOW);
 

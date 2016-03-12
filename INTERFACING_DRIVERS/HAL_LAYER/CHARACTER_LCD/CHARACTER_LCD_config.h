@@ -9,7 +9,7 @@
 /*Comment!: */ 
 /*Range!  : */ 
   
-#define CHARACTER_LCD_u8DATA0    DIO_u8PIN0
+#define CHARACTER_LCD_u8DATA0    DIO_u8PIN11
 #define CHARACTER_LCD_u8DATA1    DIO_u8PIN1
 #define CHARACTER_LCD_u8DATA2    DIO_u8PIN2
 #define CHARACTER_LCD_u8DATA3    DIO_u8PIN3
