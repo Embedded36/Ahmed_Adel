@@ -57,7 +57,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="APPLICATION_LAYER/TWO_MODES_MOTOR/stepper.c|APPLICATION_LAYER/TWO_MODES_MOTOR/dotmatrix_keypad.c|APPLICATION_LAYER/TWO_MODES_MOTOR/main.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="HAL_LAYER/CHARACTER_LCD/CHARACTER_LCD_TEST/CHARACTER_LCD_TEST.c|MCAL_LAYER/ADC_DRIVER/ADC_DRIVER_TEST/ADC_TEST.c|APPLICATION_LAYER/TWO_MODES_MOTOR/stepper.c|APPLICATION_LAYER/TWO_MODES_MOTOR/dotmatrix_keypad.c|APPLICATION_LAYER/TWO_MODES_MOTOR/main.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -114,7 +114,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="APPLICATION_LAYER/TWO_MODES_MOTOR/stepper.c|APPLICATION_LAYER/TWO_MODES_MOTOR/dotmatrix_keypad.c|APPLICATION_LAYER/TWO_MODES_MOTOR/main.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="HAL_LAYER/CHARACTER_LCD/CHARACTER_LCD_TEST/CHARACTER_LCD_TEST.c|MCAL_LAYER/ADC_DRIVER/ADC_DRIVER_TEST/ADC_TEST.c|APPLICATION_LAYER/TWO_MODES_MOTOR/stepper.c|APPLICATION_LAYER/TWO_MODES_MOTOR/dotmatrix_keypad.c|APPLICATION_LAYER/TWO_MODES_MOTOR/main.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

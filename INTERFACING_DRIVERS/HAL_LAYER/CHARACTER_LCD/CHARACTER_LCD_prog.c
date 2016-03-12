@@ -5,35 +5,6 @@
 #include"CHARACTER_LCD_config.h" 
 #include"CHARACTER_LCD_private.h"
 
-//int main()
-//    {
-//
-//    DIO_voidInit();
-//
-//    CHARACTER_LCD_voidInit();
-//
-//    CHARACTER_LCD_voidWriteCommand(0b01000000);
-//
-//    CHARACTER_LCD_voidWriteData(0xff);
-//    CHARACTER_LCD_voidWriteData(0x00);
-//    CHARACTER_LCD_voidWriteData(0xff);
-//    CHARACTER_LCD_voidWriteData(0x00);
-//
-//    CHARACTER_LCD_voidWriteData(0xff);
-//    CHARACTER_LCD_voidWriteData(0x00);
-//    CHARACTER_LCD_voidWriteData(0xff);
-//    CHARACTER_LCD_voidWriteData(0x00);
-//
-//    CHARACTER_LCD_voidWriteCommand(0x80);
-//
-//    CHARACTER_LCD_voidWriteData(0x00);
-//
-//
-//    return 0;
-//
-//    }
-
-
 void CHARACTER_LCD_voidInit(void)
     {
 
