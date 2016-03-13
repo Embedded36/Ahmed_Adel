@@ -7,16 +7,19 @@
 /*******************************************************/  
   
 /*Comment!: */ 
-  
+#define CHARACTER_LCD_u8LINE_1   0
+
+#define CHARACTER_LCD_u8LINE_2   1
+
+#define CHARACTER_LCD_u8AllLines 2
   
 /*******************************************************/  
 /*****************  Public Functions  ******************/  
 /*******************************************************/  
   void CHARACTER_LCD_voidInit(void);
   
-  void CHARACTER_LCD_voidWriteCommand(u8 Copy_u8Command);
-
-  void CHARACTER_LCD_voidWriteData(u8 Copy_u8Data);
-
+  u8 CHARACTER_LCD_voidClear(u8 Local_u8LineId);
   
-#endif  
+  u8 CHARACTER_LCD_voidWrite(u8* Copy_u8String, u8 Copy_u8Line, u8 Copy_u8CharId);
+
+  #endif

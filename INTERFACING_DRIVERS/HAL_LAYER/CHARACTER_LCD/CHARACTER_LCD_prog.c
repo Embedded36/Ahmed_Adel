@@ -40,7 +40,7 @@ void CHARACTER_LCD_voidWriteCommand(u8 Copy_u8Command)
 
     DIO_u8WritePinVal(CHARACTER_LCD_u8ENABLE, DIO_u8HIGH);
 
-    for (u8 local_u8LoopCounter = 0; local_u8LoopCounter < CHARACTER_LCD_NUM_OF_DATA_PINS; local_u8LoopCounter++)
+    for (u8 local_u8LoopCounter = 0; local_u8LoopCounter < CHARACTER_LCD_u8NUM_OF_DATA_PINS; local_u8LoopCounter++)
 	{
 
 	local_u8Command_Bit = GET_BIT(Copy_u8Command, local_u8LoopCounter);
@@ -65,7 +65,7 @@ void CHARACTER_LCD_voidWriteData(u8 Copy_u8Data)
 
     DIO_u8WritePinVal(CHARACTER_LCD_u8ENABLE, DIO_u8HIGH);
 
-    for (u8 local_u8LoopCounter = 0; local_u8LoopCounter < CHARACTER_LCD_NUM_OF_DATA_PINS; local_u8LoopCounter++)
+    for (u8 local_u8LoopCounter = 0; local_u8LoopCounter < CHARACTER_LCD_u8NUM_OF_DATA_PINS; local_u8LoopCounter++)
 	{
 
 	local_u8Data_Bit = GET_BIT(Copy_u8Data, local_u8LoopCounter);
@@ -79,3 +79,105 @@ void CHARACTER_LCD_voidWriteData(u8 Copy_u8Data)
     return;
     }
 
+u8 CHARACTER_LCD_voidClear(u8 Local_u8LineId)
+    {
+
+    u8 Local_u8ErrorFlag;
+
+    /*Comment!: Check that sent parameters are in range*/
+    if (Local_u8LineId < (CHARACTER_LCD_u8AllLines + 1))
+	{
+
+	switch (Local_u8LineId)
+
+	    {
+
+	case CHARACTER_LCD_u8LINE_1:
+
+	    CHARACTER_LCD_voidWrite("                ", CHARACTER_LCD_u8LINE_1, 0);
+	    break;
+
+	case CHARACTER_LCD_u8LINE_2:
+
+	    CHARACTER_LCD_voidWrite("                ", CHARACTER_LCD_u8LINE_2, 0);
+	    break;
+
+	case CHARACTER_LCD_u8AllLines:
+
+	    CHARACTER_LCD_voidWriteCommand(1);
+	    break;
+
+	default:
+	    break;
+
+	    }
+
+	Local_u8ErrorFlag = ok;
+
+	}
+    else
+	{
+
+	Local_u8ErrorFlag = error;
+
+	}
+
+    return Local_u8ErrorFlag;
+
+    }
+
+u8 CHARACTER_LCD_voidWrite(u8* Copy_u8String, u8 Copy_u8Line, u8 Copy_u8CharId)
+    {
+
+    u8 Local_u8CharCounter = 0;
+
+    u8 Local_u8ErrorFlag;
+
+    /*Comment!: Check that sent parameters are in range*/
+    if (Copy_u8Line < CHARACTER_LCD_u8NumberOfLines && Copy_u8CharId < CHARACTER_LCD_u8MaxLineChars)
+	{
+
+	/*Comment!: Move to char position in ddram*/
+	switch (Copy_u8Line)
+
+	    {
+
+	case CHARACTER_LCD_u8LINE_1:
+
+	    CHARACTER_LCD_voidWriteCommand(CHARACTER_LCD_u8line1Id + Copy_u8CharId);
+
+	    break;
+
+	case CHARACTER_LCD_u8LINE_2:
+
+	    CHARACTER_LCD_voidWriteCommand(CHARACTER_LCD_u8line2Id + Copy_u8CharId);
+
+	    break;
+
+	default:
+
+	    break;
+
+	    }
+	/*Comment!: Check didn't reach end of string or end of line*/
+	while (Local_u8CharCounter < CHARACTER_LCD_u8MaxLineChars && (*Copy_u8String != '\0'))
+	    {
+
+	    CHARACTER_LCD_voidWriteData(*Copy_u8String);
+
+	    Local_u8CharCounter++;
+
+	    Copy_u8String++;
+	    }
+
+	Local_u8ErrorFlag = ok;
+
+	}
+    else
+	{
+	Local_u8ErrorFlag = error;
+	}
+
+    return Local_u8ErrorFlag;
+
+    }
