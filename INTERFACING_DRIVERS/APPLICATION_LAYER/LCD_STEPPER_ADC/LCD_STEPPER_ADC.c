@@ -4,9 +4,10 @@
 #include"../../HAL_LAYER/CHARACTER_LCD/CHARACTER_LCD_interface.h"
 #include "../../HAL_LAYER/SREPPER_MOTOR/STEPPER_MOTOR_interface.h"
 #include "../../HAL_LAYER/TACTILE_SWITCH/TACTILE_SWITCH_interface.h"
-//#define speed_limit 4
+
 int main()
     {
+
     u8 switch_result;
     u16 temp;
     u8 counter;
@@ -37,7 +38,7 @@ int main()
 //
 //    CHARACTER_LCD_voidWriteData(0x00);
 
-    DIO_u8WritePortDir(DIO_u8PORT2, 0xff);
+   // DIO_u8WritePortDir(DIO_u8PORT2, 0xff);
 
     while (1)
 	{
@@ -45,17 +46,17 @@ int main()
 	TACTILE_SWITCH_u8Read(TACTILE_SWITCH_u8SWITCH1ID,&switch_result);
 
 	counter++;
+
 	ADC_u8Read_Channel_One_Shot(ADC_u8Channel0, &temp);
 
 	if (temp < 128)
 	    {
 	    if (switch_result == TACTILE_SWITCH_u8PRESSED)
 		{
-		CHARACTER_LCD_voidWrite("hamo ", CHARACTER_LCD_u8LINE_1, 0);
+		CHARACTER_LCD_voidWrite("ASAF ", CHARACTER_LCD_u8LINE_1, 0);
 		}
 	    else
 		{
-		CHARACTER_LCD_voidWrite("LEFT ", CHARACTER_LCD_u8LINE_1, 0);
 		}
 
 	    switch ((u8) temp / (u8) 26)
@@ -63,9 +64,10 @@ int main()
 
 	    case 0:
 
-		CHARACTER_LCD_voidWrite("case 0 ", CHARACTER_LCD_u8LINE_2, 0);
+		CHARACTER_LCD_voidWrite("Speed 4 ", CHARACTER_LCD_u8LINE_2, 0);
+		CHARACTER_LCD_voidWrite("LEFT ", CHARACTER_LCD_u8LINE_1, 0);
 
-		if (counter == 1)
+		if (counter >= 1)
 		    {
 		    STEPPER_MOTOR_RotateLeft();
 		    counter = 0;
@@ -76,9 +78,10 @@ int main()
 		    }
 		break;
 	    case 1:
-		CHARACTER_LCD_voidWrite("case 1 ", CHARACTER_LCD_u8LINE_2, 0);
+		CHARACTER_LCD_voidWrite("Speed 3 ", CHARACTER_LCD_u8LINE_2, 0);
+		CHARACTER_LCD_voidWrite("LEFT ", CHARACTER_LCD_u8LINE_1, 0);
 
-		if (counter == 2)
+		if (counter >= 2)
 		    {
 		    STEPPER_MOTOR_RotateLeft();
 		    counter = 0;
@@ -89,9 +92,10 @@ int main()
 		    }
 		break;
 	    case 2:
-		CHARACTER_LCD_voidWrite("case 2 ", CHARACTER_LCD_u8LINE_2, 0);
+		CHARACTER_LCD_voidWrite("Speed 2 ", CHARACTER_LCD_u8LINE_2, 0);
+		CHARACTER_LCD_voidWrite("LEFT ", CHARACTER_LCD_u8LINE_1, 0);
 
-		if (counter == 3)
+		if (counter >= 3)
 		    {
 		    STEPPER_MOTOR_RotateLeft();
 		    counter = 0;
@@ -102,9 +106,10 @@ int main()
 		    }
 		break;
 	    case 3:
-		CHARACTER_LCD_voidWrite("case 3 ", CHARACTER_LCD_u8LINE_2, 0);
+		CHARACTER_LCD_voidWrite("Speed 1 ", CHARACTER_LCD_u8LINE_2, 0);
+		CHARACTER_LCD_voidWrite("LEFT ", CHARACTER_LCD_u8LINE_1, 0);
 
-		if (counter == 4)
+		if (counter >= 4)
 		    {
 		    STEPPER_MOTOR_RotateLeft();
 		    counter = 0;
@@ -115,11 +120,12 @@ int main()
 		    }
 		break;
 	    case 4:
-		CHARACTER_LCD_voidWrite("case 4 ", CHARACTER_LCD_u8LINE_2, 0);
+		CHARACTER_LCD_voidWrite("Speed 0 ", CHARACTER_LCD_u8LINE_2, 0);
+		CHARACTER_LCD_voidWrite("STOP ", CHARACTER_LCD_u8LINE_1, 0);
 
 		break;
 	    default:
-		CHARACTER_LCD_voidWrite("case D ", CHARACTER_LCD_u8LINE_2, 0);
+//		CHARACTER_LCD_voidWrite("case D ", CHARACTER_LCD_u8LINE_2, 0);
 
 		break;
 
@@ -130,11 +136,10 @@ int main()
 
 	    if (switch_result == TACTILE_SWITCH_u8PRESSED)
 		{
-		CHARACTER_LCD_voidWrite("hamo ", CHARACTER_LCD_u8LINE_1, 0);
+		CHARACTER_LCD_voidWrite("ASAF ", CHARACTER_LCD_u8LINE_1, 0);
 		}
 	    else
 		{
-		CHARACTER_LCD_voidWrite("RIGHT", CHARACTER_LCD_u8LINE_1, 0);
 		}
 	    temp = temp - 127;
 
@@ -142,9 +147,10 @@ int main()
 		{
 
 	    case 0:
-		CHARACTER_LCD_voidWrite("case 0 ", CHARACTER_LCD_u8LINE_2, 0);
+		CHARACTER_LCD_voidWrite("Speed 4 ", CHARACTER_LCD_u8LINE_2, 0);
+		CHARACTER_LCD_voidWrite("RIGHT", CHARACTER_LCD_u8LINE_1, 0);
 
-		if (counter == 1)
+		if (counter >= 1)
 		    {
 		    STEPPER_MOTOR_RotateRight();
 		    counter = 0;
@@ -156,9 +162,10 @@ int main()
 		break;
 	    case 1:
 
-		CHARACTER_LCD_voidWrite("case 1 ", CHARACTER_LCD_u8LINE_2, 0);
+		CHARACTER_LCD_voidWrite("Speed 3 ", CHARACTER_LCD_u8LINE_2, 0);
+		CHARACTER_LCD_voidWrite("RIGHT", CHARACTER_LCD_u8LINE_1, 0);
 
-		if (counter == 2)
+		if (counter >= 2)
 		    {
 		    STEPPER_MOTOR_RotateRight();
 		    counter = 0;
@@ -169,9 +176,10 @@ int main()
 		    }
 		break;
 	    case 2:
-		CHARACTER_LCD_voidWrite("case 2 ", CHARACTER_LCD_u8LINE_2, 0);
+		CHARACTER_LCD_voidWrite("Speed 2 ", CHARACTER_LCD_u8LINE_2, 0);
+		CHARACTER_LCD_voidWrite("RIGHT", CHARACTER_LCD_u8LINE_1, 0);
 
-		if (counter == 3)
+		if (counter >= 3)
 		    {
 		    STEPPER_MOTOR_RotateRight();
 		    counter = 0;
@@ -182,9 +190,10 @@ int main()
 		    }
 		break;
 	    case 3:
-		CHARACTER_LCD_voidWrite("case 3 ", CHARACTER_LCD_u8LINE_2, 0);
+		CHARACTER_LCD_voidWrite("Speed 1 ", CHARACTER_LCD_u8LINE_2, 0);
+		CHARACTER_LCD_voidWrite("RIGHT", CHARACTER_LCD_u8LINE_1, 0);
 
-		if (counter == 4)
+		if (counter >= 4)
 		    {
 		    STEPPER_MOTOR_RotateRight();
 		    counter = 0;
@@ -194,8 +203,10 @@ int main()
 
 		    }
 		break;
+
 	    case 4:
-		CHARACTER_LCD_voidWrite("case 4 ", CHARACTER_LCD_u8LINE_2, 0);
+		CHARACTER_LCD_voidWrite("Speed 0 ", CHARACTER_LCD_u8LINE_2, 0);
+		CHARACTER_LCD_voidWrite("STOP ", CHARACTER_LCD_u8LINE_1, 0);
 
 		break;
 	    default:
@@ -206,7 +217,7 @@ int main()
 		}
 
 	    }
-	DIO_u8WritePortVal(DIO_u8PORT2, (u8) temp / (u8) 26);
+//	DIO_u8WritePortVal(DIO_u8PORT2, (u8) temp / (u8) 26);
 
 	}
 
