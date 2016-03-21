@@ -14,13 +14,16 @@
 /*Comment!: bits' numbers of ADC registers  */
 #define ADC_u8ADEN               7
 #define ADC_u8ADSC               6
-
+#define ADC_u8ADIF               4
 /*Comment!: ADC Resolution */
 #define ADC_u8EIGHT_BITS         0
 #define ADC_u8TEN_BITS           1
 
-/*Comment!: ADC number of channels */
+/*Comment!:  number of ADC channels */
 #define ADC_u8_NUMBER_OF_CHANNELS 8
+
+/*Comment!:  number of ADC levels */
+#define ADC_u8_NUMBER_OF_LEVELS (f32)1024
 
 /*Comment!: Number of samples for multi shot function */
 #define ADC_u8NUMBER_OF_SAMPLES   8
@@ -46,15 +49,21 @@
 #define ADC_u8REFS1              0
 #define ADC_u8REFS0              0
 
+#define ADC_u16RES                ((ADC_u8VEXTERNAL)/ADC_u8_NUMBER_OF_LEVELS)
+
 #elif  ADC_u8VOLTAGE_REFERENCE==ADC_u8INTERNAL_REFERENCE
 
 #define ADC_u8REFS1              1
 #define ADC_u8REFS0              1
 
+#define ADC_u16RES                ((ADC_u8VINTERNAL)/ADC_u8_NUMBER_OF_LEVELS)
+
 #elif  ADC_u8VOLTAGE_REFERENCE==ADC_u8VCC
 
 #define ADC_u8REFS1              0
 #define ADC_u8REFS0              1
+
+#define ADC_u16RES                ((ADC_u8VSUPPLY)/ADC_u8_NUMBER_OF_LEVELS)
 
 #else
 
