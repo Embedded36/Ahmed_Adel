@@ -15,14 +15,13 @@ void ADC_u8voidInit(void)
     return;
     }
 
-u8 ADC_u8Read_Channel_One_Shot(u8 Copy_u8Channel_Num, f32* Copy_pf32Result)
+u8 ADC_u8Read_Channel_One_Shot(u8 Copy_u8Channel_Num, u16* Copy_pu16Result)
     {
 
     u8 local_u8ErrorFlag;
     u8 local_8End_Of_conversion;
     u8 local_u8ADC_State;
     u8* local_pu8Result;
-    u16 local_pu16Result;
 
     /*Comment!:check ADC enabled or disabled */
     local_u8ADC_State = GET_BIT(*ADC_u8ADCSRA, ADC_u8ADEN);
@@ -32,7 +31,7 @@ u8 ADC_u8Read_Channel_One_Shot(u8 Copy_u8Channel_Num, f32* Copy_pf32Result)
 	{
 
 	/*Comment!: Create u8 pointer to the result*/
-	local_pu8Result = (u8*)&local_pu16Result;
+	local_pu8Result = (u8*) Copy_pu16Result;
 
 	/*Comment!: Choose ADC channel */
 	*ADC_u8ADMUX |= Copy_u8Channel_Num;
@@ -44,12 +43,9 @@ u8 ADC_u8Read_Channel_One_Shot(u8 Copy_u8Channel_Num, f32* Copy_pf32Result)
 	    {
 
 	    /*Comment!: Check end of conversion*/
-	    local_8End_Of_conversion = GET_BIT(*ADC_u8ADCSRA, ADC_u8ADIF);
+	    local_8End_Of_conversion = GET_BIT(*ADC_u8ADCSRA, ADC_u8ADSC);
 
-	    } while (!local_8End_Of_conversion);
-
-	/*Comment!: Clear Interrupt flag */
-	SET_BIT(*ADC_u8ADCSRA, ADC_u8ADIF);
+	    } while (local_8End_Of_conversion);
 
 	/*Comment!: Return ADC result*/
 
@@ -59,17 +55,11 @@ u8 ADC_u8Read_Channel_One_Shot(u8 Copy_u8Channel_Num, f32* Copy_pf32Result)
 
 	*local_pu8Result = *ADC_u8ADCH;
 
-	*Copy_pf32Result=(*local_u16Result)*ADC_u16RES;
-
 #elif ADC_u8RESOLUTION==ADC_u8EIGHT_BITS
 
 	*(local_pu8Result++) = *ADC_u8ADCH;
 
 	*local_pu8Result = 0x00;
-
-	local_pu16Result=(local_pu16Result)*5;
-
-	*Copy_pf32Result=(f32)(local_pu16Result)/1024;
 
 #else
 
@@ -92,7 +82,7 @@ u8 ADC_u8Read_Channel_One_Shot(u8 Copy_u8Channel_Num, f32* Copy_pf32Result)
 
     }
 
-u8 ADC_u8Read_Channel_Multi_Shot(u8 Copy_u8Channel_Num, f32* Copy_pf32Result)
+u8 ADC_u8Read_Channel_Multi_Shot(u8 Copy_u8Channel_Num, u16* Copy_pu16Result)
     {
 
     u8 local_u8ErrorFlag;
@@ -100,7 +90,7 @@ u8 ADC_u8Read_Channel_Multi_Shot(u8 Copy_u8Channel_Num, f32* Copy_pf32Result)
     u8 local_u8ADC_State;
     u8* local_pu8Result;
     u16* local_pu16Result;
-    u16* local_pu16Sum;
+
     /*Comment!:check ADC enabled or disabled */
     local_u8ADC_State = GET_BIT(*ADC_u8ADCSRA, ADC_u8ADEN);
 
@@ -109,7 +99,7 @@ u8 ADC_u8Read_Channel_Multi_Shot(u8 Copy_u8Channel_Num, f32* Copy_pf32Result)
 	{
 
 	/*Comment!: initialize summation variable */
-	*local_pu16Sum = 0;
+	*Copy_pu16Result = 0;
 
 	/*Comment!: Choose ADC Channel*/
 	*ADC_u8ADMUX |= Copy_u8Channel_Num;
@@ -125,15 +115,12 @@ u8 ADC_u8Read_Channel_Multi_Shot(u8 Copy_u8Channel_Num, f32* Copy_pf32Result)
 	    SET_BIT(*ADC_u8ADCSRA, ADC_u8ADSC);
 
 	    do
-	    	    {
+		{
 
-	    	    /*Comment!: Check end of conversion*/
-	    	    local_8End_Of_conversion = GET_BIT(*ADC_u8ADCSRA, ADC_u8ADIF);
+		/*Comment!: Check end of conversion*/
+		local_8End_Of_conversion = GET_BIT(*ADC_u8ADCSRA, ADC_u8ADSC);
 
-	    	    } while (!local_8End_Of_conversion);
-
-	    	/*Comment!: Clear Interrupt flag */
-	    	CLR_BIT(*ADC_u8ADCSRA, ADC_u8ADIF);
+		} while (local_8End_Of_conversion);
 
 	    /*Comment!: Write result to temp variable*/
 #if ADC_u8RESOLUTION==ADC_u8TEN_BITS
@@ -154,12 +141,12 @@ u8 ADC_u8Read_Channel_Multi_Shot(u8 Copy_u8Channel_Num, f32* Copy_pf32Result)
 
 #endif
 	    /*Comment!: add samples to summation tank*/
-	    *local_pu16Sum += *local_pu16Result;
+	    *Copy_pu16Result += *local_pu16Result;
 
 	    }
 
 	/*Comment!: return samples' average*/
-	*Copy_pf32Result = ((*local_pu16Sum)/ADC_u8NUMBER_OF_SAMPLES)*ADC_u16RES;
+	*Copy_pu16Result /= ADC_u8NUMBER_OF_SAMPLES;
 
 	local_u8ErrorFlag = ok;
 
@@ -194,15 +181,13 @@ void ADC_voidDisable(void)
     return;
     }
 
-u8 ADC_u8Read_Group(f32* Copy_pu32Result)
-
+u8 ADC_u8Read_Group(u16* Copy_pu16Result)
     {
 
     u8 local_u8ErrorFlag;
     u8 local_8End_Of_conversion;
     u8 local_u8ADC_State;
     u8* local_pu8Result;
-    u8* local_pu16Result;
 
     /*Comment!:check ADC enabled or disabled */
     local_u8ADC_State = GET_BIT(*ADC_u8ADCSRA, ADC_u8ADEN);
@@ -211,14 +196,12 @@ u8 ADC_u8Read_Group(f32* Copy_pu32Result)
 
 	{
 
-
+	/*Comment!: Create u8 pointer to result*/
+	local_pu8Result = (u8*) Copy_pu16Result;
 
 	for (u8 Local_u8LoopCounter = 0; Local_u8LoopCounter < ADC_u8NUMBER_OF_SAMPLES; Local_u8LoopCounter++)
 
 	    {
-
-	    /*Comment!: Create u8 pointer to result*/
-	    	local_pu8Result = (u8*) local_pu16Result;
 
 	    /*Comment!: Choose ADC channel*/
 	    *ADC_u8ADMUX |= Local_u8LoopCounter;
@@ -227,15 +210,12 @@ u8 ADC_u8Read_Group(f32* Copy_pu32Result)
 	    SET_BIT(*ADC_u8ADCSRA, ADC_u8ADSC);
 
 	    do
-	    	    {
+		{
 
-	    	    /*Comment!: Check end of conversion*/
-	    	    local_8End_Of_conversion = GET_BIT(*ADC_u8ADCSRA, ADC_u8ADIF);
+		/*Comment!: Check end of conversion*/
+		local_8End_Of_conversion = GET_BIT(*ADC_u8ADCSRA, ADC_u8ADSC);
 
-	    	    } while (!local_8End_Of_conversion);
-
-	    	/*Comment!: Clear Interrupt flag */
-	    	CLR_BIT(*ADC_u8ADCSRA, ADC_u8ADIF);
+		} while (local_8End_Of_conversion);
 
 	    /*Comment!: write back result of one channel*/
 #if ADC_u8RESOLUTION==ADC_u8TEN_BITS
@@ -255,10 +235,6 @@ u8 ADC_u8Read_Group(f32* Copy_pu32Result)
 #error " error at choosing resolution"
 
 #endif
-
-	    *Copy_pu32Result=(*local_pu16Result)*ADC_u16RES;
-
-	    Copy_pu32Result++;
 
 	    }
 

@@ -25,13 +25,13 @@
 void ADC_u8voidInit(void);
 
 /*Comment!: Read all ADC channel */
-u8 ADC_u8Read_Group(f32* local_pf32Result);
+u8 ADC_u8Read_Group(u16* local_pu16Result);
 
 /*Comment!: Read single channel */
-u8 ADC_u8Read_Channel_One_Shot(u8 Copy_u8Channel_Num, f32* Copy_pf32Result);
+u8 ADC_u8Read_Channel_One_Shot(u8 Copy_u8Channel_Num, u16* Copy_pu16Result);
 
 /*Comment!: Read single channel multi times then return the average */
-u8 ADC_u8Read_Channel_Multi_Shot(u8 Copy_u8Channel_Num, f32* Copy_pf32Result);
+u8 ADC_u8Read_Channel_Multi_Shot(u8 Copy_u8Channel_Num, u16* Copy_pu16Result);
 
 /*Comment!: Enable ADC */
 void ADC_voidEnable(void);
