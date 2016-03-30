@@ -20,7 +20,7 @@
 							<option id="de.innot.avreclipse.toolchain.options.toolchain.objcopy.eeprom.app.debug.2026197892" name="Generate HEX file for EEPROM" superClass="de.innot.avreclipse.toolchain.options.toolchain.objcopy.eeprom.app.debug"/>
 							<option id="de.innot.avreclipse.toolchain.options.toolchain.objdump.app.debug.755348656" name="Generate Extended Listing (Source + generated Assembler)" superClass="de.innot.avreclipse.toolchain.options.toolchain.objdump.app.debug" value="false" valueType="boolean"/>
 							<option id="de.innot.avreclipse.toolchain.options.toolchain.size.app.debug.1807919735" name="Print Size" superClass="de.innot.avreclipse.toolchain.options.toolchain.size.app.debug"/>
-							<option id="de.innot.avreclipse.toolchain.options.toolchain.avrdude.app.debug.604966307" name="AVRDude" superClass="de.innot.avreclipse.toolchain.options.toolchain.avrdude.app.debug" value="true" valueType="boolean"/>
+							<option id="de.innot.avreclipse.toolchain.options.toolchain.avrdude.app.debug.604966307" name="AVRDude" superClass="de.innot.avreclipse.toolchain.options.toolchain.avrdude.app.debug" value="false" valueType="boolean"/>
 							<targetPlatform id="de.innot.avreclipse.targetplatform.winavr.app.debug.1118691826" name="AVR Cross-Target" superClass="de.innot.avreclipse.targetplatform.winavr.app.debug"/>
 							<builder buildPath="${workspace_loc:/INTERFACING_DRIVERS}/Debug" id="de.innot.avreclipse.target.builder.winavr.app.debug.512685740" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="AVR GNU Make Builder" superClass="de.innot.avreclipse.target.builder.winavr.app.debug">
 								<outputEntries>
@@ -30,13 +30,13 @@
 							</builder>
 							<tool id="de.innot.avreclipse.tool.assembler.winavr.app.debug.1841869870" name="AVR Assembler" superClass="de.innot.avreclipse.tool.assembler.winavr.app.debug">
 								<option id="de.innot.avreclipse.assembler.option.debug.level.1578785899" name="Generate Debugging Info" superClass="de.innot.avreclipse.assembler.option.debug.level" value="de.innot.avreclipse.assembler.option.debug.level.g3" valueType="enumerated"/>
-								<option id="de.innot.avreclipse.assembler.option.debug.type.1125111592" superClass="de.innot.avreclipse.assembler.option.debug.type" value="de.innot.avreclipse.assembler.option.debug.level.dwarf-2" valueType="enumerated"/>
+								<option id="de.innot.avreclipse.assembler.option.debug.type.1125111592" name="Debug Info Format" superClass="de.innot.avreclipse.assembler.option.debug.type" value="de.innot.avreclipse.assembler.option.debug.level.dwarf-2" valueType="enumerated"/>
 								<inputType id="de.innot.avreclipse.tool.assembler.input.623623158" superClass="de.innot.avreclipse.tool.assembler.input"/>
 							</tool>
 							<tool id="de.innot.avreclipse.tool.compiler.winavr.app.debug.878039378" name="AVR Compiler" superClass="de.innot.avreclipse.tool.compiler.winavr.app.debug">
 								<option id="de.innot.avreclipse.compiler.option.debug.level.958368920" name="Generate Debugging Info" superClass="de.innot.avreclipse.compiler.option.debug.level" value="de.innot.avreclipse.compiler.option.debug.level.g3" valueType="enumerated"/>
 								<option id="de.innot.avreclipse.compiler.option.optimize.2057352854" name="Optimization Level" superClass="de.innot.avreclipse.compiler.option.optimize"/>
-								<option id="de.innot.avreclipse.compiler.option.debug.type.876924336" superClass="de.innot.avreclipse.compiler.option.debug.type" value="de.innot.avreclipse.compiler.option.debug.level.dwarf-2" valueType="enumerated"/>
+								<option id="de.innot.avreclipse.compiler.option.debug.type.876924336" name="Debug Info Format" superClass="de.innot.avreclipse.compiler.option.debug.type" value="de.innot.avreclipse.compiler.option.debug.level.dwarf-2" valueType="enumerated"/>
 								<inputType id="de.innot.avreclipse.compiler.winavr.input.1956067855" name="C Source Files" superClass="de.innot.avreclipse.compiler.winavr.input"/>
 							</tool>
 							<tool id="de.innot.avreclipse.tool.cppcompiler.app.debug.409675404" name="AVR C++ Compiler" superClass="de.innot.avreclipse.tool.cppcompiler.app.debug">
@@ -59,7 +59,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="APPLICATION_LAYER/LCD_STEPPER_ADC/LCD_STEPPER_ADC.c|HAL_LAYER/CHARACTER_LCD/CHARACTER_LCD_TEST/CHARACTER_LCD_TEST.c|APPLICATION_LAYER/TWO_MODES_MOTOR/stepper.c|APPLICATION_LAYER/TWO_MODES_MOTOR/dotmatrix_keypad.c|APPLICATION_LAYER/TWO_MODES_MOTOR/main.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="MCAL_LAYER/USART/USART_TEST/USART_TEST.c|MCAL_LAYER/ADC_DRIVER/ADC_DRIVER_TEST/ADC_TEST.c|APPLICATION_LAYER/LCD_STEPPER_ADC/LCD_STEPPER_ADC.c|HAL_LAYER/CHARACTER_LCD/CHARACTER_LCD_TEST/CHARACTER_LCD_TEST.c|APPLICATION_LAYER/TWO_MODES_MOTOR/stepper.c|APPLICATION_LAYER/TWO_MODES_MOTOR/dotmatrix_keypad.c|APPLICATION_LAYER/TWO_MODES_MOTOR/main.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -84,7 +84,7 @@
 							<option id="de.innot.avreclipse.toolchain.options.toolchain.objcopy.eeprom.app.release.1255074306" name="Generate HEX file for EEPROM" superClass="de.innot.avreclipse.toolchain.options.toolchain.objcopy.eeprom.app.release" value="false" valueType="boolean"/>
 							<option id="de.innot.avreclipse.toolchain.options.toolchain.objdump.app.release.697512312" name="Generate Extended Listing (Source + generated Assembler)" superClass="de.innot.avreclipse.toolchain.options.toolchain.objdump.app.release" value="false" valueType="boolean"/>
 							<option id="de.innot.avreclipse.toolchain.options.toolchain.size.app.release.2098074468" name="Print Size" superClass="de.innot.avreclipse.toolchain.options.toolchain.size.app.release"/>
-							<option id="de.innot.avreclipse.toolchain.options.toolchain.avrdude.app.release.34124875" name="AVRDude" superClass="de.innot.avreclipse.toolchain.options.toolchain.avrdude.app.release" value="true" valueType="boolean"/>
+							<option id="de.innot.avreclipse.toolchain.options.toolchain.avrdude.app.release.34124875" name="AVRDude" superClass="de.innot.avreclipse.toolchain.options.toolchain.avrdude.app.release" value="false" valueType="boolean"/>
 							<targetPlatform id="de.innot.avreclipse.targetplatform.winavr.app.release.1928089084" name="AVR Cross-Target" superClass="de.innot.avreclipse.targetplatform.winavr.app.release"/>
 							<builder buildPath="${workspace_loc:/INTERFACING_DRIVERS}/Release" id="de.innot.avreclipse.target.builder.winavr.app.release.1680489794" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="AVR GNU Make Builder" superClass="de.innot.avreclipse.target.builder.winavr.app.release"/>
 							<tool id="de.innot.avreclipse.tool.assembler.winavr.app.release.789641097" name="AVR Assembler" superClass="de.innot.avreclipse.tool.assembler.winavr.app.release">
@@ -116,7 +116,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="APPLICATION_LAYER/LCD_STEPPER_ADC/LCD_STEPPER_ADC.c|HAL_LAYER/CHARACTER_LCD/CHARACTER_LCD_TEST/CHARACTER_LCD_TEST.c|APPLICATION_LAYER/TWO_MODES_MOTOR/stepper.c|APPLICATION_LAYER/TWO_MODES_MOTOR/dotmatrix_keypad.c|APPLICATION_LAYER/TWO_MODES_MOTOR/main.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="MCAL_LAYER/USART/USART_TEST/USART_TEST.c|MCAL_LAYER/ADC_DRIVER/ADC_DRIVER_TEST/ADC_TEST.c|APPLICATION_LAYER/LCD_STEPPER_ADC/LCD_STEPPER_ADC.c|HAL_LAYER/CHARACTER_LCD/CHARACTER_LCD_TEST/CHARACTER_LCD_TEST.c|APPLICATION_LAYER/TWO_MODES_MOTOR/stepper.c|APPLICATION_LAYER/TWO_MODES_MOTOR/dotmatrix_keypad.c|APPLICATION_LAYER/TWO_MODES_MOTOR/main.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -127,7 +127,14 @@
 		<project id="INTERFACING_DRIVERS.de.innot.avreclipse.project.winavr.elf_2.1.0.1884989992" name="AVR Cross Target Application" projectType="de.innot.avreclipse.project.winavr.elf_2.1.0"/>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
-	<storageModule moduleId="refreshScope"/>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="Debug">
+			<resource resourceType="PROJECT" workspacePath="/INTERFACING_DRIVERS"/>
+		</configuration>
+		<configuration configurationName="Release">
+			<resource resourceType="PROJECT" workspacePath="/INTERFACING_DRIVERS"/>
+		</configuration>
+	</storageModule>
 	<storageModule moduleId="scannerConfiguration">
 		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 		<scannerConfigBuildInfo instanceId="de.innot.avreclipse.configuration.app.debug.603828770;de.innot.avreclipse.configuration.app.debug.603828770.;de.innot.avreclipse.tool.compiler.winavr.app.debug.878039378;de.innot.avreclipse.compiler.winavr.input.1956067855">
