@@ -1,11 +1,12 @@
 #include"../../APPLICATION_LAYER/types.h"
+#include "../../Shared_Libraries/interrupt.h"
 #include"EXINT_interface.h"  
 #include"EXINT_config.h" 
 #include"EXINT_private.h"
 
-void (*EXINT_PvoidEXINT0ISR)(void);
-void (*EXINT_PvoidEXINT1ISR)(void);
-void (*EXINT_PvoidEXINT2ISR)(void);
+static void (*EXINT_PvoidEXINT0ISR)(void);
+static void (*EXINT_PvoidEXINT1ISR)(void);
+static void (*EXINT_PvoidEXINT2ISR)(void);
 
 extern void EXINT_voidInit(void)
     {

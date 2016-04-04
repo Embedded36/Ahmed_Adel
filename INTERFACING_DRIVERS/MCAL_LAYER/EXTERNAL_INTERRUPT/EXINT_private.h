@@ -40,9 +40,7 @@
 #define CLR_BIT(Reg,Bit_no)                   ((Reg)&=(~(1<<(Bit_no))))
 #define SET_BIT(Reg,Bit_no)                   ((Reg)|=(1<<(Bit_no)))
 
-#define ISR(vector, ...) 	\
-		void vector(void) __attribute__ ((signal,used,externally_visible)) __VA_ARGS__;\
-		void vector(void)
+
 
 
 #endif  
