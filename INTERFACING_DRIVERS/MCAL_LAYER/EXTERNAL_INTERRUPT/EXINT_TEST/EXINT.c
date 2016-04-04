@@ -5,7 +5,7 @@
  *      Author: Ahmed
  */
 #include "../../../APPLICATION_LAYER/types.h"
-#include"../../TIMER/TIMER_interface.h"
+#include"../../TIMER0/TIMER0_interface.h"
 #include"../EXINT_interface.h"
 #include "../../DIO_DRIVER/DIO_interface.h"
 #include"../../../HAL_LAYER/KEYPAD/KEYPAD_interface.h"
@@ -57,7 +57,7 @@ int main()
     while (1)
 	{
 
-	xx = Timer_u32read();
+	xx = Timer0_u32read();
 	if (xx >= 15600)
 	    {
 	    yy++;
