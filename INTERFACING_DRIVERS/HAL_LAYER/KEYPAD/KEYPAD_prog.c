@@ -1,11 +1,29 @@
-#include"../../APPLICATION_LAYER/types.h"
+#include"../../Shared_Libraries/types.h"
 #include"../../MCAL_LAYER/DIO_DRIVER/DIO_interface.h"
 #include"KEYPAD_interface.h"  
 #include"KEYPAD_config.h" 
 #include"KEYPAD_private.h"
 
-extern void KEYPAD_voidInit(void)
+/******************************************************/
+/********************** Arrays ************************/
+/******************************************************/
 
+/*Comment!: mapping to DIO pins of rows and columns*/
+const u8 Keypad_u8RowS_Array[KEYPAD_u8NUM_ROWS] =
+    {
+    KEYPAD_u8ROW1, KEYPAD_u8ROW2, KEYPAD_u8ROW3, KEYPAD_u8ROW4
+    };
+
+const u8 Keypad_u8COLUMNS_Array[KEYPAD_u8NUM_COLUMNS] =
+    {
+    KEYPAD_u8COLUMN1, KEYPAD_u8COLUMN2, KEYPAD_u8COLUMN3, KEYPAD_u8COLUMN4
+    };
+
+/******************************************************/
+/********************* Functions **********************/
+/******************************************************/
+
+extern void KEYPAD_voidInit(void)
     {
 
     return;
@@ -47,8 +65,8 @@ extern Keypad_u16Switches KEYPAD_Keypad_u16SwitchesRead(void)
 		Keypad_u8ColumnsCounter++)
 	    {
 
-		/*Comment!: Get Switch Index  */
-		/*Comment!: Switch Index from 0~15*/
+	    /*Comment!: Get Switch Index  */
+	    /*Comment!: Switch Index from 0~15*/
 	    local_u8SwitchIdx = Keypad_u8ColumnsCounter + (KEYPAD_u8NUM_ROWS * Keypad_u8LoopCounter);
 
 	    /*Comment!: Read Switch value*/
