@@ -1,9 +1,19 @@
-#include"../../APPLICATION_LAYER/types.h"
+#include"../../Shared_Libraries/types.h"
 #include"../../MCAL_LAYER/DIO_DRIVER/DIO_interface.h"
 #include"STEPPER_MOTOR_interface.h"  
 #include"STEPPER_MOTOR_config.h" 
 #include"STEPPER_MOTOR_private.h"
 
+/*******************************************************/
+/**************** Private Definitions ******************/
+/*******************************************************/
+
+/*Comment!: Motor state*/
+  static u8 STEPPER_MOTOR_u8State=1;
+
+  /*******************************************************/
+  /********************* Functions ***********************/
+  /*******************************************************/
 void STEPPER_MOTOR_voidInit(void)
     {
     return;
