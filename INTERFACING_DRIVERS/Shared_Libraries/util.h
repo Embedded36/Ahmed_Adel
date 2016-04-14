@@ -16,16 +16,12 @@
 #define WRITE_BIT(Reg,Bit_no,Bit_val)        do{ switch (Bit_val) {\
 		case 1:\
 			SET_BIT(Reg, Bit_no);\
-			local_u8ErrorFlag = ok;\
 			break;\
 		case 0:\
 			CLR_BIT(Reg, Bit_no);\
-			local_u8ErrorFlag = ok;\
 			break;\
 		default:\
-			local_u8ErrorFlag = error;\
 			break;\
 		}}while(0)
-
 
 #endif /* SHARED_LIBRARIES_UTIL_H_ */
