@@ -1,4 +1,4 @@
-#include"../../APPLICATION_LAYER/types.h"
+#include"../../Shared_Libraries/types.h"
 #include"ADC_interface.h"  
 #include"ADC_config.h" 
 #include"ADC_private.h"

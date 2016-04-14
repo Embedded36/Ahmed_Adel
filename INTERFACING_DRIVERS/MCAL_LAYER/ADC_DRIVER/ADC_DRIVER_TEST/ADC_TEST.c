@@ -4,7 +4,7 @@
  *  Created on: Mar 11, 2016
  *      Author: Ahmed
  */
-#include"../../../APPLICATION_LAYER/types.h"
+#include"../../../Shared_Libraries/types.h"
 #include"../ADC_interface.h"
 #include"../../DIO_DRIVER/DIO_interface.h"
 
