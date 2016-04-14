@@ -12,4 +12,5 @@ typedef float f32;
 typedef double f64;                
 #define error 0               
 #define ok 1                       
+#define NULL 0
 #endif                             
