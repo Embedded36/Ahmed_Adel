@@ -106,12 +106,12 @@ u8 CHARACTER_LCD_voidClear(u8 Local_u8LineId)
 
 	case CHARACTER_LCD_u8LINE_1:
 
-	    CHARACTER_LCD_voidWrite("                ", CHARACTER_LCD_u8LINE_1, 0);
+	    CHARACTER_LCD_voidWrite((u8*)"                ", CHARACTER_LCD_u8LINE_1, 0);
 	    break;
 
 	case CHARACTER_LCD_u8LINE_2:
 
-	    CHARACTER_LCD_voidWrite("                ", CHARACTER_LCD_u8LINE_2, 0);
+	    CHARACTER_LCD_voidWrite((u8*)"                ", CHARACTER_LCD_u8LINE_2, 0);
 	    break;
 
 	case CHARACTER_LCD_u8AllLines:
