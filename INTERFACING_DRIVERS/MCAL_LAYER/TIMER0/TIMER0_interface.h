@@ -13,9 +13,11 @@
 /*****************  Public Functions  ******************/  
 /*******************************************************/  
   
-  void TIMER0_voidINIT();
+  extern void TIMER0_voidINIT();
   
-  extern u32 Timer_u32read(void);
+  extern u16 TIMER0_u16readMS(void);
+
+  extern void TIMER0_voidReset(void);
 
 
 #endif  

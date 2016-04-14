@@ -14,118 +14,140 @@ void APP_voidLED2Toggle(void);
 void APP_voidLED1Toggle(void);
 void APP_voidLED3Toggle(void);
 
-u8 Flag1 = 0;
-u8 Flag2 = 0;
-u8 Flag3 = 0;
-
+static u8 Flag1 = 0;
+static u8 Flag2 = 0;
+static u8 Flag3 = 0;
+static u8 toggle = 0;
+static u8 bouncing_flag = 0;
+//static u16 bouncing_time = 0;
 void APP_voidLED1Toggle(void)
     {
-    Flag1 = !Flag1;
+    if (bouncing_flag == 0)
+	{
+	Flag1 = !Flag1;
+	bouncing_flag = 1;
+	EXINT_DISABLEINT(EXINT_u8INT0);
+	TIMER0_voidReset();
+	//bouncing_time = TIMER0_u16readMS();
+
+	}
+    else
+	{
+
+	}
 
     return;
     }
 
 void APP_voidLED2Toggle(void)
     {
-    Flag2 = !Flag2;
 
+    if (bouncing_flag == 0)
+	{
+	Flag2 = !Flag2;
+	bouncing_flag = 1;
+	EXINT_DISABLEINT(EXINT_u8INT0);
+	TIMER0_voidReset();
+	//bouncing_time = TIMER0_u16readMS();
+
+	}
+    else
+	{
+
+	}
     return;
     }
 
 void APP_voidLED3Toggle(void)
     {
-    Flag3 = !Flag3;
 
+    if (bouncing_flag == 0)
+	{
+	Flag3 = !Flag3;
+	bouncing_flag = 1;
+	EXINT_DISABLEINT(EXINT_u8INT0);
+	TIMER0_voidReset();
+	//bouncing_time = TIMER0_u16readMS();
+	}
+    else
+	{
+
+	}
     return;
     }
 int main()
     {
 
-    u32 xx;
-    u8 yy = 0;
-
-    DIO_u8WritePortDir(DIO_u8PORT2, 0xff);
+    u16 temp;
 
     Keypad_u16Switches APP_Keypad;
 
     DIO_voidInit();
     EXINT_voidInit();
     EXINT_ISR0CallBackSet(APP_voidLED1Toggle);
-    TIMER_voidINIT();
+    TIMER0_voidINIT();
     KEYPAD_voidInit();
 
     while (1)
 	{
 
-	xx = Timer0_u32read();
-	if (xx >= 15600)
+	temp = TIMER0_u16readMS();
+
+	if (bouncing_flag == 1 && temp > 450)
 	    {
-	    yy++;
+
+	//	DIO_u8WritePinVal(DIO_u8PIN30,1);
+	    bouncing_flag = 0;
+	    EXINT_ENABLEINT(EXINT_u8INT0);
+
+	    }
+
+	if (temp >= 500)
+	    {
+	    toggle = !toggle;
+	    TIMER0_voidReset();
 	    }
 	else
 	    {
 
 	    }
-
-	//DIO_u8WritePortVal(DIO_u8PORT2, yy);
 
 	APP_Keypad = KEYPAD_Keypad_u16SwitchesRead();
 
 	switch (APP_Keypad.KEYPAD_u16Switches)
 	    {
 
-	case (1 << 0):
-	    EXINT_ISR0CallBackSet(APP_voidLED1Toggle);
-	    break;
-
 	case (1 << 1):
-	    EXINT_ISR0CallBackSet(APP_voidLED2Toggle);
+	    EXINT_ISR0CallBackSet(APP_voidLED1Toggle);
+	   // DIO_u8WritePinVal(DIO_u8PIN29, 1);
+
 	    break;
 
 	case (1 << 2):
+	    EXINT_ISR0CallBackSet(APP_voidLED2Toggle);
+	   // DIO_u8WritePinVal(DIO_u8PIN30, 1);
+
+	    break;
+
+	case (1 << 3):
 	    EXINT_ISR0CallBackSet(APP_voidLED3Toggle);
+	   // DIO_u8WritePinVal(DIO_u8PIN31, 1);
+
 	    break;
 
 	default:
+//	    DIO_u8WritePinVal(DIO_u8PIN31, 0);
+//	    DIO_u8WritePinVal(DIO_u8PIN30, 0);
+//	    DIO_u8WritePinVal(DIO_u8PIN29, 0);
 
 	    break;
 
 	    }
 
-	if (Flag1 == 0)
-	    {
-	    DIO_u8WritePinVal(DIO_u8PIN28, DIO_u8HIGH);
+	DIO_u8WritePinVal(DIO_u8PIN29, Flag1 && toggle);
+	DIO_u8WritePinVal(DIO_u8PIN30, Flag2 && toggle);
+	DIO_u8WritePinVal(DIO_u8PIN31, Flag3 && toggle);
 
-	    }
-	else
-	    {
-	    DIO_u8WritePinVal(DIO_u8PIN28, DIO_u8LOW);
-
-	    }
-
-	if (Flag2 == 0)
-	    {
-	    DIO_u8WritePinVal(DIO_u8PIN29, DIO_u8HIGH);
-
-	    }
-	else
-	    {
-	    DIO_u8WritePinVal(DIO_u8PIN29, DIO_u8LOW);
-
-	    }
-
-	if (Flag3 == 0)
-	    {
-	    DIO_u8WritePinVal(DIO_u8PIN30, DIO_u8HIGH);
-
-	    }
-	else
-	    {
-	    DIO_u8WritePinVal(DIO_u8PIN30, DIO_u8LOW);
-
-	    }
 	}
-
     return 0;
     }
-
