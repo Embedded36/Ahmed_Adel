@@ -1,8 +1,21 @@
-#include"../../APPLICATION_LAYER/types.h"
+#include"../../Shared_Libraries/types.h"
 #include"DIO_interface.h"
 #include"DIO_config.h"
 #include"DIO_private.h"
 
+/*******************************************************/
+/******************* Arrays Of Ports *******************/
+/*******************************************************/
+static volatile u8* OUTPUT_PORTS_ARRAY[4] =
+{ DIO_u8PORTA, DIO_u8PORTB, DIO_u8PORTC, DIO_u8PORTD };
+static volatile u8* INPUT_PORTS_ARRAY[4] =
+{ DIO_u8PINA, DIO_u8PINB, DIO_u8PINC, DIO_u8PIND };
+static volatile u8* DIRECTION_PORTS_ARRAY[4] =
+{ DIO_u8DDRA, DIO_u8DDRB, DIO_u8DDRC, DIO_u8DDRD };
+
+/*******************************************************/
+/*********************** Functions *********************/
+/*******************************************************/
 extern u8 DIO_u8ReadPinVal(u8 Copy_u8PinIdx, u8* Copy_u8PtrToVal)
     {
     u8 local_u8PortNumber;

@@ -36,15 +36,7 @@
 #define DIO_u8PORTD   ((volatile u8*)(0x32))
 #define DIO_u8DDRD    ((volatile u8*)(0x31))
 #define DIO_u8PIND    ((volatile u8*)(0x30))
-/*******************************************************/
-/******************* Arrays Of Ports *******************/
-/*******************************************************/
-static volatile u8* OUTPUT_PORTS_ARRAY[4] =
-{ DIO_u8PORTA, DIO_u8PORTB, DIO_u8PORTC, DIO_u8PORTD };
-static volatile u8* INPUT_PORTS_ARRAY[4] =
-{ DIO_u8PINA, DIO_u8PINB, DIO_u8PINC, DIO_u8PIND };
-static volatile u8* DIRECTION_PORTS_ARRAY[4] =
-{ DIO_u8DDRA, DIO_u8DDRB, DIO_u8DDRC, DIO_u8DDRD };
+
 /*******************************************************/
 /***************** Private Definitions *****************/
 /*******************************************************/
