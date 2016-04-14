@@ -4,7 +4,7 @@
  *  Created on: Mar 29, 2016
  *      Author: Ahmed
  */
-#include "../../../APPLICATION_LAYER/types.h"
+#include "../../../Shared_Libraries/types.h"
 #include"../../TIMER0/TIMER0_interface.h"
 #include"../EXINT_interface.h"
 #include "../../DIO_DRIVER/DIO_interface.h"
