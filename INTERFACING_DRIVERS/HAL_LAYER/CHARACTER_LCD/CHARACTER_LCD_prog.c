@@ -1,9 +1,21 @@
-#include"../../APPLICATION_LAYER/types.h"
-#include"../../APPLICATION_LAYER/Delay.h"
+#include"../../Shared_Libraries/types.h"
+#include"../../Shared_Libraries/Delay.h"
 #include"../../MCAL_LAYER/DIO_DRIVER/DIO_interface.h"
 #include"CHARACTER_LCD_interface.h"  
 #include"CHARACTER_LCD_config.h" 
 #include"CHARACTER_LCD_private.h"
+
+const u8 CHARACTER_LCD_u8Data_Pins[CHARACTER_LCD_u8NUM_OF_DATA_PINS] =
+    {
+	    CHARACTER_LCD_u8DATA0,
+	    CHARACTER_LCD_u8DATA1,
+	    CHARACTER_LCD_u8DATA2,
+	    CHARACTER_LCD_u8DATA3,
+	    CHARACTER_LCD_u8DATA4,
+	    CHARACTER_LCD_u8DATA5,
+	    CHARACTER_LCD_u8DATA6,
+	    CHARACTER_LCD_u8DATA7
+    };
 
 void CHARACTER_LCD_voidInit(void)
     {

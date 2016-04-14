@@ -16,17 +16,7 @@
 
 #define CHARACTER_LCD_u8line2Id (0b11000000)
 
-const u8 CHARACTER_LCD_u8Data_Pins[CHARACTER_LCD_u8NUM_OF_DATA_PINS] =
-    {
-	    CHARACTER_LCD_u8DATA0,
-	    CHARACTER_LCD_u8DATA1,
-	    CHARACTER_LCD_u8DATA2,
-	    CHARACTER_LCD_u8DATA3,
-	    CHARACTER_LCD_u8DATA4,
-	    CHARACTER_LCD_u8DATA5,
-	    CHARACTER_LCD_u8DATA6,
-	    CHARACTER_LCD_u8DATA7
-    };
+
 
 /*******************************************************/
 /*****************  Private Functions  *****************/
