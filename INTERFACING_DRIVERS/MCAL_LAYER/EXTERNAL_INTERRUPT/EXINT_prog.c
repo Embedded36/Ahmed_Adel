@@ -53,8 +53,6 @@ extern void EXINT_voidInit(void)
 #error "INT3 Isn't enabled or disabled"
 #endif
 
-    __asm("SEI");
-
     return;
     }
 
