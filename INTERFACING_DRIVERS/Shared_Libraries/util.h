@@ -14,11 +14,11 @@
 #define CLR_BIT(Reg,Bit_no)                   ((Reg)&=(~(1<<(Bit_no))))
 #define SET_BIT(Reg,Bit_no)                   ((Reg)|=(1<<(Bit_no)))
 #define WRITE_BIT(Reg,Bit_no,Bit_val)        do{ switch (Bit_val) {\
-		case DIO_u8HIGH:\
+		case 1:\
 			SET_BIT(Reg, Bit_no);\
 			local_u8ErrorFlag = ok;\
 			break;\
-		case DIO_u8LOW:\
+		case 0:\
 			CLR_BIT(Reg, Bit_no);\
 			local_u8ErrorFlag = ok;\
 			break;\
