@@ -20,7 +20,7 @@
 							<option id="de.innot.avreclipse.toolchain.options.toolchain.objcopy.eeprom.app.debug.2026197892" name="Generate HEX file for EEPROM" superClass="de.innot.avreclipse.toolchain.options.toolchain.objcopy.eeprom.app.debug"/>
 							<option id="de.innot.avreclipse.toolchain.options.toolchain.objdump.app.debug.755348656" name="Generate Extended Listing (Source + generated Assembler)" superClass="de.innot.avreclipse.toolchain.options.toolchain.objdump.app.debug" value="false" valueType="boolean"/>
 							<option id="de.innot.avreclipse.toolchain.options.toolchain.size.app.debug.1807919735" name="Print Size" superClass="de.innot.avreclipse.toolchain.options.toolchain.size.app.debug"/>
-							<option id="de.innot.avreclipse.toolchain.options.toolchain.avrdude.app.debug.604966307" name="AVRDude" superClass="de.innot.avreclipse.toolchain.options.toolchain.avrdude.app.debug" value="false" valueType="boolean"/>
+							<option id="de.innot.avreclipse.toolchain.options.toolchain.avrdude.app.debug.604966307" name="AVRDude" superClass="de.innot.avreclipse.toolchain.options.toolchain.avrdude.app.debug" value="true" valueType="boolean"/>
 							<targetPlatform id="de.innot.avreclipse.targetplatform.winavr.app.debug.1118691826" name="AVR Cross-Target" superClass="de.innot.avreclipse.targetplatform.winavr.app.debug"/>
 							<builder buildPath="${workspace_loc:/INTERFACING_DRIVERS}/Debug" id="de.innot.avreclipse.target.builder.winavr.app.debug.512685740" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="AVR GNU Make Builder" superClass="de.innot.avreclipse.target.builder.winavr.app.debug">
 								<outputEntries>
@@ -59,7 +59,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="APPLICATION_LAYER/Digital_Piano/DPiano.c|MCAL_LAYER/TIMER0/TIMER0_prog.c|MCAL_LAYER/USART/USART_prog.c|MCAL_LAYER/EXTERNAL_INTERRUPT/EXINT_TEST/EXINT.c|MCAL_LAYER/TIMER0/TIMER0_Test/overflowtest.c|APPLICATION_LAYER/TWO_MODES_MOTOR/main.c|MCAL_LAYER/USART/USART_TEST/USART_TEST.c|MCAL_LAYER/ADC_DRIVER/ADC_DRIVER_TEST/ADC_TEST.c|APPLICATION_LAYER/TWO_MODES_MOTOR/dotmatrix_keypad.c|HAL_LAYER/CHARACTER_LCD/CHARACTER_LCD_TEST/CHARACTER_LCD_TEST.c|APPLICATION_LAYER/LCD_STEPPER_ADC/LCD_STEPPER_ADC.c|APPLICATION_LAYER/TWO_MODES_MOTOR/stepper.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="MCAL_LAYER/SPI/SPI_TEST/SPI_TEST.c|APPLICATION_LAYER/Digital_Piano/DPiano.c|MCAL_LAYER/TIMER0/TIMER0_prog.c|MCAL_LAYER/EXTERNAL_INTERRUPT/EXINT_TEST/EXINT.c|MCAL_LAYER/TIMER0/TIMER0_Test/overflowtest.c|APPLICATION_LAYER/TWO_MODES_MOTOR/main.c|MCAL_LAYER/ADC_DRIVER/ADC_DRIVER_TEST/ADC_TEST.c|APPLICATION_LAYER/TWO_MODES_MOTOR/dotmatrix_keypad.c|HAL_LAYER/CHARACTER_LCD/CHARACTER_LCD_TEST/CHARACTER_LCD_TEST.c|APPLICATION_LAYER/LCD_STEPPER_ADC/LCD_STEPPER_ADC.c|APPLICATION_LAYER/TWO_MODES_MOTOR/stepper.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -84,7 +84,7 @@
 							<option id="de.innot.avreclipse.toolchain.options.toolchain.objcopy.eeprom.app.release.1255074306" name="Generate HEX file for EEPROM" superClass="de.innot.avreclipse.toolchain.options.toolchain.objcopy.eeprom.app.release" value="false" valueType="boolean"/>
 							<option id="de.innot.avreclipse.toolchain.options.toolchain.objdump.app.release.697512312" name="Generate Extended Listing (Source + generated Assembler)" superClass="de.innot.avreclipse.toolchain.options.toolchain.objdump.app.release" value="false" valueType="boolean"/>
 							<option id="de.innot.avreclipse.toolchain.options.toolchain.size.app.release.2098074468" name="Print Size" superClass="de.innot.avreclipse.toolchain.options.toolchain.size.app.release"/>
-							<option id="de.innot.avreclipse.toolchain.options.toolchain.avrdude.app.release.34124875" name="AVRDude" superClass="de.innot.avreclipse.toolchain.options.toolchain.avrdude.app.release" value="false" valueType="boolean"/>
+							<option id="de.innot.avreclipse.toolchain.options.toolchain.avrdude.app.release.34124875" name="AVRDude" superClass="de.innot.avreclipse.toolchain.options.toolchain.avrdude.app.release" value="true" valueType="boolean"/>
 							<targetPlatform id="de.innot.avreclipse.targetplatform.winavr.app.release.1928089084" name="AVR Cross-Target" superClass="de.innot.avreclipse.targetplatform.winavr.app.release"/>
 							<builder buildPath="${workspace_loc:/INTERFACING_DRIVERS}/Release" id="de.innot.avreclipse.target.builder.winavr.app.release.1680489794" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="AVR GNU Make Builder" superClass="de.innot.avreclipse.target.builder.winavr.app.release"/>
 							<tool id="de.innot.avreclipse.tool.assembler.winavr.app.release.789641097" name="AVR Assembler" superClass="de.innot.avreclipse.tool.assembler.winavr.app.release">
@@ -116,7 +116,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="APPLICATION_LAYER/Digital_Piano/DPiano.c|MCAL_LAYER/TIMER0/TIMER0_prog.c|MCAL_LAYER/USART/USART_prog.c|MCAL_LAYER/EXTERNAL_INTERRUPT/EXINT_TEST/EXINT.c|MCAL_LAYER/TIMER0/TIMER0_Test/overflowtest.c|APPLICATION_LAYER/TWO_MODES_MOTOR/main.c|MCAL_LAYER/USART/USART_TEST/USART_TEST.c|MCAL_LAYER/ADC_DRIVER/ADC_DRIVER_TEST/ADC_TEST.c|APPLICATION_LAYER/TWO_MODES_MOTOR/dotmatrix_keypad.c|HAL_LAYER/CHARACTER_LCD/CHARACTER_LCD_TEST/CHARACTER_LCD_TEST.c|APPLICATION_LAYER/LCD_STEPPER_ADC/LCD_STEPPER_ADC.c|APPLICATION_LAYER/TWO_MODES_MOTOR/stepper.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="MCAL_LAYER/SPI/SPI_TEST/SPI_TEST.c|APPLICATION_LAYER/Digital_Piano/DPiano.c|MCAL_LAYER/TIMER0/TIMER0_prog.c|MCAL_LAYER/EXTERNAL_INTERRUPT/EXINT_TEST/EXINT.c|MCAL_LAYER/TIMER0/TIMER0_Test/overflowtest.c|APPLICATION_LAYER/TWO_MODES_MOTOR/main.c|MCAL_LAYER/ADC_DRIVER/ADC_DRIVER_TEST/ADC_TEST.c|APPLICATION_LAYER/TWO_MODES_MOTOR/dotmatrix_keypad.c|HAL_LAYER/CHARACTER_LCD/CHARACTER_LCD_TEST/CHARACTER_LCD_TEST.c|APPLICATION_LAYER/LCD_STEPPER_ADC/LCD_STEPPER_ADC.c|APPLICATION_LAYER/TWO_MODES_MOTOR/stepper.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

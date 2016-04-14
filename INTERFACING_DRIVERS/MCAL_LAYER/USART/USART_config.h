@@ -7,21 +7,18 @@
 /*******************************************************/  
   
 /*Comment!: Baud Rate (number of bits per second)*/
-/*Range!  : */ 
 
 #define USART_u8BAUDRATE     9600UL
 
-/*Comment!: Baud Rate (number of bits per second)*/
-/*Range!  : */
+/*Comment!: System clock */
 #define F_CPU                4000000UL
 
-
 /*Comment!: Baud Rate (number of bits per second)*/
-/*Range!  : */
+/*Range!  : 5~9*/
 #define USART_u8NUM_BITS_PER_DATA     8
 
 /*Comment!: Baud Rate (number of bits per second)*/
-/*Range!  : */
+/*Range!  : 1-2*/
 #define USART_u8NUM_STOP_BITS     1
 
 /*Comment!: Baud Rate (number of bits per second)*/
