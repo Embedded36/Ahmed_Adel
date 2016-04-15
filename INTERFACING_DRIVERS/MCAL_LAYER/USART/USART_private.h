@@ -15,6 +15,8 @@
 #define USART_u8RXEN    4
 #define USART_u8TXEN    3
 #define USART_u8URSEL   7
+#define USART_u8TXB8    0
+#define USART_u8RXCIE   7
 
 #define USART_u8NOPARITY   0
 #define USART_u8ODDPARITY  1

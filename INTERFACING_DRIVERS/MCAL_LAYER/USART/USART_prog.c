@@ -1,10 +1,17 @@
 #include"../../Shared_Libraries/types.h"
 #include"../../Shared_Libraries/util.h"
+#include"../../Shared_Libraries/System_Clock.h"
+#include "../../Shared_Libraries/interrupt.h"
+#include "../DIO_DRIVER/DIO_interface.h"
 #include"USART_interface.h"
 #include"USART_config.h"
 #include"USART_private.h"
+#include <avr/interrupt.h>/////////////////
 
-void USART_voidInit(void)
+    /*Comment!: Pointer to call back function*/
+static void (*USART_PvoidUSARTRXISR) (void);
+
+extern void USART_voidInit(void)
     {
 
     /*Comment!: Set Baud Rate*/
@@ -12,25 +19,115 @@ void USART_voidInit(void)
 
     *USART_u8UBRRL = (u8) (USART_u8BAUD);
 
+    /*Comment!: Choose other parameters*/
+    *USART_u8UCSRC = CONC(1, 0, USART_u8UPM1, USART_u8UPM0, USART_u8USBS, USART_u8UCSZ1, USART_u8UCSZ0, 0);
+
+    /*Comment!: Enable Receiving interrupt*/
+    SET_BIT(*USART_u8UCSRB, USART_u8RXCIE);
+
     /*Comment!: Enable receiver and transmitter*/
     SET_BIT(*USART_u8UCSRB, USART_u8TXEN);
 
     SET_BIT(*USART_u8UCSRB, USART_u8RXEN);
 
-    /*Comment!: Choose other parameters*/
-    *USART_u8UCSRC=CONC(1,0,USART_u8UPM1,USART_u8UPM0,USART_u8USBS,USART_u8UCSZ1,USART_u8UCSZ0,0);
+    /*Comment!: Initialize call back function's pointer*/
+    USART_PvoidUSARTRXISR=NULL;
 
     return;
     }
 
-void USART_voidTransmit(u8 Copy_u8Data)
+extern void USART_voidTransmit(u16 Copy_u8Data)
     {
 
-    /* Wait for empty transmit buffer */
-    while (!((*USART_u8UCSRA) & USART_u8TxFlagMask ))
+#if USART_u8NUM_BITS_PER_DATA==9
+
+    u8 Local_u8Temp;
+
+    /*Comment!: Read bit 9 at data  */
+    Local_u8Temp = GET_BIT(Copy_u8Data,9);
+
+    /*Comment!: Load the ninth bit in serial buffer register */
+    WRITE_BIT(*USART_u8UCSRB,USART_u8TXB8,Local_u8Temp);
+
+#endif
+
+    /*Comment!:  Wait for empty transmit buffer */
+    while (!((*USART_u8UCSRA) & USART_u8TxFlagMask))
 	;
-    /* Put data into buffer, sends the data */
-    *USART_u8UDR = Copy_u8Data;
+    /*Comment!:  Put data into buffer, sends the data */
+    *USART_u8UDR = (u8) Copy_u8Data;
 
     return;
+    }
+
+extern void USART_voidEnableTx(void)
+    {
+
+    SET_BIT(*USART_u8UCSRB, USART_u8TXEN);
+
+    return;
+    }
+
+extern void USART_voidDisableTx(void)
+    {
+
+    CLR_BIT(*USART_u8UCSRB, USART_u8TXEN);
+
+    return;
+    }
+
+extern void USART_voidEnableRx(void)
+    {
+
+    SET_BIT(*USART_u8UCSRB, USART_u8RXEN);
+
+    return;
+    }
+
+extern void USART_voidDisableRx(void)
+    {
+
+    CLR_BIT(*USART_u8UCSRB, USART_u8RXEN);
+
+    return;
+    }
+
+
+ISR(USART_RXC_vect)
+//ISR(__vector_13)
+{
+
+    if (USART_PvoidUSARTRXISR)
+	{
+
+	USART_PvoidUSARTRXISR();
+
+	}
+
+    else
+
+	{
+
+	}
+
+    }
+
+extern void USART_VoidUSARTRXCallBackSet(void (*Copy_PvoidUSARTRXISR)(void))
+    {
+
+    USART_PvoidUSARTRXISR = Copy_PvoidUSARTRXISR;
+
+    return;
+    }
+
+extern u16 USART_VoidReadRxBuffer(void)
+    {
+
+    u16 Local_u16ReturnVal;
+
+    /*Comment!:  Read Rx buffer*/
+    Local_u16ReturnVal=*USART_u8UDR;
+
+    return Local_u16ReturnVal;
+
     }
