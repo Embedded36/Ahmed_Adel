@@ -8,8 +8,11 @@
 #include"USART_private.h"
 #include <avr/interrupt.h>/////////////////
 
-    /*Comment!: Pointer to call back function*/
-static void (*USART_PvoidUSARTRXISR) (void);
+/*Comment!: Pointer to call back function*/
+static void (*USART_PvoidUSARTRXISR)(void);
+
+/*Comment!: Software Buffer for Received data*/
+static u16 USART_u16RxBuffer;
 
 extern void USART_voidInit(void)
     {
@@ -31,7 +34,10 @@ extern void USART_voidInit(void)
     SET_BIT(*USART_u8UCSRB, USART_u8RXEN);
 
     /*Comment!: Initialize call back function's pointer*/
-    USART_PvoidUSARTRXISR=NULL;
+    USART_PvoidUSARTRXISR = NULL;
+
+    /*Comment!: Initialize Rx buffer*/
+    USART_u16RxBuffer = 0;
 
     return;
     }
@@ -92,10 +98,26 @@ extern void USART_voidDisableRx(void)
     return;
     }
 
-
 ISR(USART_RXC_vect)
 //ISR(__vector_13)
-{
+    {
+
+#if USART_u8NUM_BITS_PER_DATA==8
+
+    USART_u16RxBuffer = *USART_u8UDR;
+
+#elif USART_u8NUM_BITS_PER_DATA==9
+
+    /*Comment!: Clear buffer*/
+    USART_u16RxBuffer=0;
+
+    /*Comment!: Load the ninth bit in serial buffer register */
+    WRITE_BIT(USART_u16RxBuffer,8,GET_BIT(*USART_u8UCSRB,USART_u8TXB8));
+
+    /*Comment!: Load the first byte in serial buffer register */
+    USART_u16RxBuffer |=*USART_u8UDR;
+
+#endif
 
     if (USART_PvoidUSARTRXISR)
 	{
@@ -123,11 +145,7 @@ extern void USART_VoidUSARTRXCallBackSet(void (*Copy_PvoidUSARTRXISR)(void))
 extern u16 USART_VoidReadRxBuffer(void)
     {
 
-    u16 Local_u16ReturnVal;
-
     /*Comment!:  Read Rx buffer*/
-    Local_u16ReturnVal=*USART_u8UDR;
-
-    return Local_u16ReturnVal;
+    return USART_u16RxBuffer;
 
     }
