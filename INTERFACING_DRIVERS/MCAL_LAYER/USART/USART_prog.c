@@ -2,7 +2,6 @@
 #include"../../Shared_Libraries/util.h"
 #include"../../Shared_Libraries/System_Clock.h"
 #include "../../Shared_Libraries/interrupt.h"
-#include "../DIO_DRIVER/DIO_interface.h"
 #include"USART_interface.h"
 #include"USART_config.h"
 #include"USART_private.h"
