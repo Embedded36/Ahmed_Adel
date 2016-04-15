@@ -18,7 +18,7 @@ void led(void)
 
     DIO_u8WritePortVal(DIO_u8PORT0, flag);
 
-    TIMER0_Void_Delay_MS(1000);
+    TIMER0_Void_Delay_MS(20);
 
     }
 
@@ -39,7 +39,6 @@ int main(void)
 
     while (1)
 	{
-//    DIO_u8WritePortVal(DIO_u8PORT0, 0xff);
 
 	}
 

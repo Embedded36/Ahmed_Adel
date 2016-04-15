@@ -1,26 +1,50 @@
 #include "../../Shared_Libraries/types.h"
+#include"../../Shared_Libraries/interrupt.h"
 #include"../../MCAL_LAYER/TIMER0/TIMER0_interface.h"
 #include "../../MCAL_LAYER/DIO_DRIVER/DIO_interface.h"
 #include"../../HAL_LAYER/KEYPAD/KEYPAD_interface.h"
 
+static u8 state = 0;
+
+u16 temp = 16;
+
+void Toogle(void)
+    {
+
+    state = !state;
+
+    DIO_u8WritePinVal(DIO_u8PIN31, state);
+
+    TIMER0_Void_Delay_MS(10 * temp);
+
+    return;
+    }
+
 int main()
     {
 
-    u16 temp = 0;
+//    u8 keypad;
 
-    u8 keypad;
+  //  u8 toggle = 0;
 
-    u8 toggle = 0;
     Keypad_u16Switches APP_Keypad;
 
     DIO_voidInit();
-    TIMER0_voidINIT();
+
+    TIMER0_VoidINIT();
+
     KEYPAD_voidInit();
+
+    TIMER0_CallbackSetup(Toogle);
+
+    Enable_Global_INT();
+
+    TIMER0_Void_Delay_MS(10 * temp);
 
     while (1)
 	{
 
-	temp = TIMER0_u16readMS();
+	//temp = TIMER0_u16readMS();
 
 	APP_Keypad = KEYPAD_Keypad_u16SwitchesRead();
 
@@ -112,19 +136,6 @@ int main()
 	    break;
 
 	    }
-
-	keypad = TIMER0_u16readMS();
-
-	if (keypad >= temp)
-	    {
-	    toggle = !toggle;
-	    }
-	else
-	    {
-
-	    }
-
-	DIO_u8WritePinVal(DIO_u8PIN30, toggle);
 
 	}
     return 0;
