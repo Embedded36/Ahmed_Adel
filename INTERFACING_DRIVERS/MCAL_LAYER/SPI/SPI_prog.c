@@ -13,6 +13,9 @@
 /*Comment!: static pointer to callback function */
 static void (*SPI_PvoidSPIISR)(void);
 
+/*Comment!: software buffer for received buffer*/
+static u8 SPI_u8Buffer;
+
 #if SPI_u8MODE==SPI_u8MASTER
 
 #if SPI_u8SLAVES_NUM==1
@@ -51,6 +54,9 @@ static volatile u8 SPI_SLAVE_PINS_ARRAY[SPI_u8SLAVES_NUM] =
 
 extern void SPI_voidInit(void)
     {
+
+    /*Comment!:  initialize software buffer*/
+    SPI_u8Buffer=0;
 
     /*Comment!:initialize pointer to call back function*/
     SPI_PvoidSPIISR = NULL;
@@ -257,8 +263,10 @@ extern void SPI_ISRCallBackSet(void (*Copy_PvoidSPIISR)(void))
     return;
     }
 
-ISR(__vector_10)
+ISR(__vector_12)
     {
+
+    SPI_u8Buffer=*SPI_u8SPDR;
 
     /*Comment!: check that callback function is set*/
     if (SPI_PvoidSPIISR)
@@ -279,6 +287,6 @@ ISR(__vector_10)
 extern u8 SPI_ReadReceivedData(void)
     {
 
-    /*Comment!: return data at spi tx/rx buffer */
-    return (*SPI_u8SPDR);
+    /*Comment!: return data at buffer */
+    return SPI_u8Buffer;
     }
