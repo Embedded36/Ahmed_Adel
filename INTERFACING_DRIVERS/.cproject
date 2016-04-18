@@ -58,8 +58,33 @@
 							<tool id="de.innot.avreclipse.tool.avrdude.app.debug.1522730781" name="AVRDude" superClass="de.innot.avreclipse.tool.avrdude.app.debug"/>
 						</toolChain>
 					</folderInfo>
+					<folderInfo id="de.innot.avreclipse.configuration.app.debug.603828770.307519783" name="/" resourcePath="MCAL_LAYER/TIMER0/TIMER0_Test">
+						<toolChain id="de.innot.avreclipse.toolchain.winavr.app.debug.1960609796" name="AVR-GCC Toolchain" superClass="de.innot.avreclipse.toolchain.winavr.app.debug" unusedChildren="">
+							<option id="de.innot.avreclipse.toolchain.options.toolchain.objcopy.flash.app.debug.1818729641.115869861" name="Generate HEX file for Flash memory" superClass="de.innot.avreclipse.toolchain.options.toolchain.objcopy.flash.app.debug.1818729641"/>
+							<option id="de.innot.avreclipse.toolchain.options.toolchain.objcopy.eeprom.app.debug.2026197892.548246871" name="Generate HEX file for EEPROM" superClass="de.innot.avreclipse.toolchain.options.toolchain.objcopy.eeprom.app.debug.2026197892"/>
+							<option id="de.innot.avreclipse.toolchain.options.toolchain.objdump.app.debug.755348656.244349737" name="Generate Extended Listing (Source + generated Assembler)" superClass="de.innot.avreclipse.toolchain.options.toolchain.objdump.app.debug.755348656"/>
+							<option id="de.innot.avreclipse.toolchain.options.toolchain.size.app.debug.1807919735.1897096752" name="Print Size" superClass="de.innot.avreclipse.toolchain.options.toolchain.size.app.debug.1807919735"/>
+							<option id="de.innot.avreclipse.toolchain.options.toolchain.avrdude.app.debug.604966307.979264755" name="AVRDude" superClass="de.innot.avreclipse.toolchain.options.toolchain.avrdude.app.debug.604966307"/>
+							<targetPlatform id="de.innot.avreclipse.targetplatform.winavr.app.debug" name="AVR Cross-Target" superClass="de.innot.avreclipse.targetplatform.winavr.app.debug"/>
+							<tool id="de.innot.avreclipse.tool.assembler.winavr.app.debug.419499610" name="AVR Assembler" superClass="de.innot.avreclipse.tool.assembler.winavr.app.debug.1841869870">
+								<inputType id="de.innot.avreclipse.tool.assembler.input.492218650" superClass="de.innot.avreclipse.tool.assembler.input"/>
+							</tool>
+							<tool id="de.innot.avreclipse.tool.compiler.winavr.app.debug.1418429163" name="AVR Compiler" superClass="de.innot.avreclipse.tool.compiler.winavr.app.debug.878039378">
+								<inputType id="de.innot.avreclipse.compiler.winavr.input.1848029892" name="C Source Files" superClass="de.innot.avreclipse.compiler.winavr.input"/>
+							</tool>
+							<tool id="de.innot.avreclipse.tool.cppcompiler.app.debug.1424959257" name="AVR C++ Compiler" superClass="de.innot.avreclipse.tool.cppcompiler.app.debug.409675404"/>
+							<tool id="de.innot.avreclipse.tool.linker.winavr.app.debug.756592392" name="AVR C Linker" superClass="de.innot.avreclipse.tool.linker.winavr.app.debug.929362017"/>
+							<tool id="de.innot.avreclipse.tool.cpplinker.app.debug.1443466185" name="AVR C++ Linker" superClass="de.innot.avreclipse.tool.cpplinker.app.debug.1008053382"/>
+							<tool id="de.innot.avreclipse.tool.archiver.winavr.base.1319115093" name="AVR Archiver" superClass="de.innot.avreclipse.tool.archiver.winavr.base.888884271"/>
+							<tool id="de.innot.avreclipse.tool.objdump.winavr.app.debug.688333764" name="AVR Create Extended Listing" superClass="de.innot.avreclipse.tool.objdump.winavr.app.debug.1977828339"/>
+							<tool id="de.innot.avreclipse.tool.objcopy.flash.winavr.app.debug.523416226" name="AVR Create Flash image" superClass="de.innot.avreclipse.tool.objcopy.flash.winavr.app.debug.2090193900"/>
+							<tool id="de.innot.avreclipse.tool.objcopy.eeprom.winavr.app.debug.1492319094" name="AVR Create EEPROM image" superClass="de.innot.avreclipse.tool.objcopy.eeprom.winavr.app.debug.1438811913"/>
+							<tool id="de.innot.avreclipse.tool.size.winavr.app.debug.1224093844" name="Print Size" superClass="de.innot.avreclipse.tool.size.winavr.app.debug.964617289"/>
+							<tool id="de.innot.avreclipse.tool.avrdude.app.debug.2129801003" name="AVRDude" superClass="de.innot.avreclipse.tool.avrdude.app.debug.1522730781"/>
+						</toolChain>
+					</folderInfo>
 					<sourceEntries>
-						<entry excluding="MCAL_LAYER/TIMER0/TIMER0_Test/Timer0_test1.c|MCAL_LAYER/USART/USART_prog.c|MCAL_LAYER/USART/USART_TEST/USART_TEST.c|MCAL_LAYER/SPI/SPI_TEST/SPI_TEST.c|MCAL_LAYER/EXTERNAL_INTERRUPT/EXINT_TEST/EXINT.c|MCAL_LAYER/TIMER0/TIMER0_Test/overflowtest.c|APPLICATION_LAYER/TWO_MODES_MOTOR/main.c|MCAL_LAYER/ADC_DRIVER/ADC_DRIVER_TEST/ADC_TEST.c|APPLICATION_LAYER/TWO_MODES_MOTOR/dotmatrix_keypad.c|HAL_LAYER/CHARACTER_LCD/CHARACTER_LCD_TEST/CHARACTER_LCD_TEST.c|APPLICATION_LAYER/LCD_STEPPER_ADC/LCD_STEPPER_ADC.c|APPLICATION_LAYER/TWO_MODES_MOTOR/stepper.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="APPLICATION_LAYER/Song/song.c|APPLICATION_LAYER/Digital_Piano/DPiano.c|MCAL_LAYER/USART/USART_prog.c|MCAL_LAYER/USART/USART_TEST/USART_TEST.c|MCAL_LAYER/SPI/SPI_TEST/SPI_TEST.c|MCAL_LAYER/EXTERNAL_INTERRUPT/EXINT_TEST/EXINT.c|MCAL_LAYER/TIMER0/TIMER0_Test/overflowtest.c|APPLICATION_LAYER/TWO_MODES_MOTOR/main.c|MCAL_LAYER/ADC_DRIVER/ADC_DRIVER_TEST/ADC_TEST.c|APPLICATION_LAYER/TWO_MODES_MOTOR/dotmatrix_keypad.c|HAL_LAYER/CHARACTER_LCD/CHARACTER_LCD_TEST/CHARACTER_LCD_TEST.c|APPLICATION_LAYER/LCD_STEPPER_ADC/LCD_STEPPER_ADC.c|APPLICATION_LAYER/TWO_MODES_MOTOR/stepper.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -116,7 +141,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="MCAL_LAYER/TIMER0/TIMER0_Test/Timer0_test1.c|MCAL_LAYER/USART/USART_prog.c|MCAL_LAYER/USART/USART_TEST/USART_TEST.c|MCAL_LAYER/SPI/SPI_TEST/SPI_TEST.c|MCAL_LAYER/EXTERNAL_INTERRUPT/EXINT_TEST/EXINT.c|MCAL_LAYER/TIMER0/TIMER0_Test/overflowtest.c|APPLICATION_LAYER/TWO_MODES_MOTOR/main.c|MCAL_LAYER/ADC_DRIVER/ADC_DRIVER_TEST/ADC_TEST.c|APPLICATION_LAYER/TWO_MODES_MOTOR/dotmatrix_keypad.c|HAL_LAYER/CHARACTER_LCD/CHARACTER_LCD_TEST/CHARACTER_LCD_TEST.c|APPLICATION_LAYER/LCD_STEPPER_ADC/LCD_STEPPER_ADC.c|APPLICATION_LAYER/TWO_MODES_MOTOR/stepper.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="APPLICATION_LAYER/Song/song.c|APPLICATION_LAYER/Digital_Piano/DPiano.c|MCAL_LAYER/USART/USART_prog.c|MCAL_LAYER/USART/USART_TEST/USART_TEST.c|MCAL_LAYER/SPI/SPI_TEST/SPI_TEST.c|MCAL_LAYER/EXTERNAL_INTERRUPT/EXINT_TEST/EXINT.c|MCAL_LAYER/TIMER0/TIMER0_Test/overflowtest.c|APPLICATION_LAYER/TWO_MODES_MOTOR/main.c|MCAL_LAYER/ADC_DRIVER/ADC_DRIVER_TEST/ADC_TEST.c|APPLICATION_LAYER/TWO_MODES_MOTOR/dotmatrix_keypad.c|HAL_LAYER/CHARACTER_LCD/CHARACTER_LCD_TEST/CHARACTER_LCD_TEST.c|APPLICATION_LAYER/LCD_STEPPER_ADC/LCD_STEPPER_ADC.c|APPLICATION_LAYER/TWO_MODES_MOTOR/stepper.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
