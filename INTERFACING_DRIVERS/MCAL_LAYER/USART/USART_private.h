@@ -6,11 +6,11 @@
 /*******************************************************/
 
 /*Comment!: */
-#if (((F_CPU)/(16*(USART_u8BAUDRATE)))-1)<4096
-#define USART_u8BAUD    (((F_CPU)/(16*(USART_u8BAUDRATE)))-1)
-#else
-#error "Baud rate is out of range"
-#endif
+//#if (((F_CPU)/(16*(USART_u8BAUDRATE)))-1)<4096
+//#define USART_u8BAUD    (((F_CPU)/(16*(USART_u8BAUDRATE)))-1)
+//#else
+//#error "Baud rate is out of range"
+//#endif
 
 #define USART_u8RXEN    4
 #define USART_u8TXEN    3

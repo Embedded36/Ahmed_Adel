@@ -1,11 +1,10 @@
 #include"../../Shared_Libraries/types.h"
 #include"../../Shared_Libraries/util.h"
 #include"../../Shared_Libraries/System_Clock.h"
-//#include "../../Shared_Libraries/interrupt.h"
+#include "../../Shared_Libraries/interrupt.h"
 #include"USART_interface.h"
 #include"USART_config.h"
 #include"USART_private.h"
-#include <avr/interrupt.h>/////////////////
 
 /*Comment!: Pointer to call back function*/
 static void (*USART_PvoidUSARTRXISR)(void);
@@ -16,10 +15,14 @@ static u16 USART_u16RxBuffer;
 extern void USART_voidInit(void)
     {
 
-    /*Comment!: Set Baud Rate*/
-    *USART_u8UBRRH = (u8) (USART_u8BAUD >> 8);
+    u8 USART_u8BAUD;
 
-    *USART_u8UBRRL = (u8) (USART_u8BAUD);
+    USART_u8BAUD=(((F_CPU)/(16*(USART_u8BAUDRATE)))-1);
+
+    /*Comment!: Set Baud Rate*/
+    *USART_u8UBRRH =  (USART_u8BAUD >> 8);
+
+    *USART_u8UBRRL =  (USART_u8BAUD);
 
     /*Comment!: Choose other parameters*/
     *USART_u8UCSRC = CONC(1, 0, USART_u8UPM1, USART_u8UPM0, USART_u8USBS, USART_u8UCSZ1, USART_u8UCSZ0, 0);
@@ -97,8 +100,7 @@ extern void USART_voidDisableRx(void)
     return;
     }
 
-ISR(USART_RXC_vect)
-//ISR(__vector_13)
+ISR(__vector_13)
     {
 
 #if USART_u8NUM_BITS_PER_DATA==8
