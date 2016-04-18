@@ -18,8 +18,6 @@ void led(void)
 
     flag = ~flag;
 
-    DIO_u8WritePortVal(DIO_u8PORT0, flag);
-
 
     flag1 = 1;
     }
@@ -37,15 +35,19 @@ int main(void)
 
     Enable_Global_INT();
 
-    TIMER0_Void_Delay_US(120);
+    TIMER0_Void_Delay_US(90);
 
     while (1)
 	{
+
 	if (flag1 == 1)
 	    {
-	    TIMER0_Void_Delay_US(120);
+	    DIO_u8WritePortVal(DIO_u8PORT0, flag);
 	    flag1 = 0;
+	    TIMER0_Void_Delay_US(125);
+
 	    }
+
 	}
 
     return 0;

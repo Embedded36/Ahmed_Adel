@@ -1,11 +1,9 @@
 #include"../../Shared_Libraries/types.h"
 #include"../../Shared_Libraries/System_Clock.h"
-//#include"../../Shared_Libraries/interrupt.h"
-#include "../DIO_DRIVER/DIO_interface.h"
+#include"../../Shared_Libraries/interrupt.h"
 #include"TIMER0_interface.h"
 #include"TIMER0_config.h"
 #include"TIMER0_private.h"
-#include<avr/interrupt.h>
 
 static u32 Timer0_u32MaxOverFlow;
 static u32 Timer0_u32NumOverFlow;
@@ -24,51 +22,44 @@ extern void TIMER0_Void_Delay_US(u32 Copy_u32Us)
 
     u32 Local_u32NumTicks;
 
-    Local_u32NumTicks = Copy_u32Us * (F_CPU / 1000000);
+     Local_u32NumTicks = Copy_u32Us * (F_CPU / 1000000);
 
-    Timer0_u32MaxOverFlow = Local_u32NumTicks / 256;
+     Timer0_u32MaxOverFlow = Local_u32NumTicks / 256;
 
-    Timer0_u32MaxCompTicks=200;// = Local_u32NumTicks % 256;
+     Timer0_u32MaxCompTicks = Local_u32NumTicks % 256;
 
-    if (Timer0_u32MaxOverFlow)
-	{
+     if (Timer0_u32MaxOverFlow)
+ 	{
+ 	//reset timer
+ 	*TIMER0_u8TCNT0 = 0;
 
-	*TIMER0_u8TCNT0 = 0;
+ 	//overflow interrupt enable
+ 	(*TIMER0_u8TIMSK) |= 0x01;
 
-	//overflow interrupt enable
-	(*TIMER0_u8TIMSK) |= 0x01;
+ 	Timer0_u32NumOverFlow = 0;
 
-	Timer0_u32NumOverFlow = 0;
+ 	//No prescaler
+ 	(*TIMER0_u8TCCR0) |= 0x01;
+ 	}
+     else
+ 	{
+ 	//activate compare match
 
-	//No prescaler
-	(*TIMER0_u8TCCR0) |= 0x01;
+	 //CTC interrupt Enable
+	 	(*TIMER0_u8TIMSK) |= 0x02;
 
-	}
+	 	//ctc mode
+	 	(*TIMER0_u8TCCR0) |= 0x08;
 
-    else
-	{
+	 	//set value at compare match register
+	 	*TIMER0_u8OCR0 = Timer0_u32MaxCompTicks;
 
-	*TIMER0_u8OCR0 = Timer0_u32MaxCompTicks;
+ 		//No prescaler
+ 			(*TIMER0_u8TCCR0) |= 0x01;
 
-//	//ctc mode
-	(*TIMER0_u8TCCR0) |= 0x08;
-//	//deactivate ctc mode
-//	    (*TIMER0_u8TCCR0) &= 0xf7;
-//	//overflow interrupt disable
-//	(*TIMER0_u8TIMSK) &= ~0x01;
-//
-	//reset counter
-	*TIMER0_u8TCNT0 = 0;
-	//	//No prescaler
-	(*TIMER0_u8TCCR0) |= 0x01;
-
-	//CTC interrupt Enable
-	(*TIMER0_u8TIMSK) |= 0x02;
-
-	}
+ 	}
 
     return;
-
     }
 
 extern void TIMER0_Void_Delay_MS(u32 Copy_u32Ms)
@@ -84,7 +75,7 @@ extern void TIMER0_Void_Delay_MS(u32 Copy_u32Ms)
 
     if (Timer0_u32MaxOverFlow)
 	{
-
+	//reset timer
 	*TIMER0_u8TCNT0 = 0;
 
 	//overflow interrupt enable
@@ -94,30 +85,28 @@ extern void TIMER0_Void_Delay_MS(u32 Copy_u32Ms)
 
 	//No prescaler
 	(*TIMER0_u8TCCR0) |= 0x01;
-
 	}
-
     else
 	{
-
-	//ctc mode
-	(*TIMER0_u8TCCR0) |= 0x08;
-
-	*TIMER0_u8OCR0 = Timer0_u32MaxCompTicks;
-
-	//overflow interrupt disable
-	(*TIMER0_u8TIMSK) &= ~0x01;
+	//activate compare match
 
 	//CTC interrupt Enable
-	(*TIMER0_u8TIMSK) |= 0x02;
+		(*TIMER0_u8TIMSK) |= 0x02;
+
+		//ctc mode
+		(*TIMER0_u8TCCR0) |= 0x08;
+
+		//set value at compare match register
+		*TIMER0_u8OCR0 = Timer0_u32MaxCompTicks;
+		//No prescaler
+			(*TIMER0_u8TCCR0) |= 0x01;
 
 	}
 
     return;
     }
 
-//ISR (__vector_11)
-ISR(TIMER0_OVF_vect)
+ISR (__vector_11)
     {
 
     Timer0_u32NumOverFlow++;
@@ -126,25 +115,22 @@ ISR(TIMER0_OVF_vect)
 
 	{
 
-//	//disable timer
-//	(*TIMER0_u8TCCR0) &= 0b11111000;
-//
-//	//overflow interrupt disable
-//	(*TIMER0_u8TIMSK) &= ~0x01;
-//
-//	Timer0_PvoidTimer0ISR();
-
-        //ctc mode
-	(*TIMER0_u8TCCR0) |= 0x08;
-
-	*TIMER0_u8OCR0 = 200;
+	//disable timer
+	//(*TIMER0_u8TCCR0) &= 0b11111000;
 
 	//overflow interrupt disable
 	(*TIMER0_u8TIMSK) &= ~0x01;
 
+	//Timer0_PvoidTimer0ISR();
+
 	//CTC interrupt Enable
 	(*TIMER0_u8TIMSK) |= 0x02;
-	//    Timer0_PvoidTimer0ISR();
+
+	//ctc mode
+	(*TIMER0_u8TCCR0) |= 0x08;
+
+	//set value at compare match register
+	*TIMER0_u8OCR0 = Timer0_u32MaxCompTicks;
 
 	}
 
@@ -155,20 +141,19 @@ ISR(TIMER0_OVF_vect)
 
     }
 
-ISR(TIMER0_COMP_vect)
+ISR (__vector_10)
     {
 
-    //deactivate ctc mode
-    // (*TIMER0_u8TCCR0) &= 0xf7;
-
-    //compare interrupt disable
-    (*TIMER0_u8TIMSK) &= ~0x02;
-//disable timer
-    (*TIMER0_u8TCCR0) &= 0b11111110;
+    //disable timer
+    (*TIMER0_u8TCCR0) &= 0b11111000;
 
     Timer0_PvoidTimer0ISR();
 
-//	(*TIMER0_u8TCCR0) |= 0x01;
+    //CTC interrupt disable
+    (*TIMER0_u8TIMSK) &= ~0x02;
+
+    //ctc mode
+    (*TIMER0_u8TCCR0) &= ~0x08;
 
     }
 
