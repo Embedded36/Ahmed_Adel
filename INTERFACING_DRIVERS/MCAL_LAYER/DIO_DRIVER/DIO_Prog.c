@@ -355,6 +355,6 @@ extern void DIO_voidInit(void)
 	    DIO_u8PIN29_INITDIR, DIO_u8PIN30_INITDIR, DIO_u8PIN31_INITDIR);
     local_u8temp2 = ~local_u8temp2;
     local_u8temp2 &= *DIO_u8PORTD;
-    *DIO_u8PORTA = local_u8temp1 | local_u8temp2;
+    *DIO_u8PORTD = local_u8temp1 | local_u8temp2;
     return;
     }
