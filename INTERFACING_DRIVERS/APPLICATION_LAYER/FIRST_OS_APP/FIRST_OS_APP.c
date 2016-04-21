@@ -6,29 +6,29 @@
  */
 
 #include"../../Shared_Libraries/types.h"
-#include"../../HAL_LAYER/RTOS/RTOS_interface.h"
+#include"../../RTOS/RTOS_interface.h"
 #include"../../MCAL_LAYER/DIO_DRIVER/DIO_interface.h"
 
 void TASK1(void);
 void TASK2(void);
 void TASK3(void);
 
-
 void main()
     {
 
-    struct TCB TCB_ARRay[3];
+    u8 delay[3] =
+	{
+	0, 1, 3
+	};
 
-    TCB_ARRay[0].ptr = TASK1;
-    TCB_ARRay[0].count = 5;
-    TCB_ARRay[1].ptr = TASK2;
-    TCB_ARRay[1].count = 10;
-    TCB_ARRay[2].ptr = TASK3;
-    TCB_ARRay[2].count = 20;
+    RTOS_voidCreateTask(TASK1, 1);
+    RTOS_voidCreateTask(TASK2, 2);
+    RTOS_voidCreateTask(TASK3, 4);
 
     DIO_voidInit();
     RTOS_voidInit();
-    RTOS_voidStart(TCB_ARRay);
+
+    RTOS_voidStart(delay);
 
     return;
     }

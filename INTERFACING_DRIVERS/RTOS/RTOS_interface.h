@@ -5,13 +5,6 @@
 /***************** Public Definitions ******************/
 /*******************************************************/
 
-/*Comment!: TCB structure contain pointer to a void function (task),count represents Task's periodicity*/
-/*Comment!:  counter = (Task Period) / (Tick Time)  */
-struct TCB
-    {
-	void (*ptr)(void);
-	u8 count;
-    };
 
 /*******************************************************/
 /*****************  Public Functions  ******************/
@@ -21,6 +14,9 @@ struct TCB
 void RTOS_voidInit(void);
 
 /*Comment!:Start RTOS */
-void RTOS_voidStart(struct TCB *Copy_PStructTcp);
+void RTOS_voidStart(u8* Copy_u8Start);
+
+/*Comment!: Append task information to TCB array */
+void RTOS_voidCreateTask(void (*Copy_pfvoidtaskptr)(void), u8 Copy_u8Periodicity);
 
 #endif

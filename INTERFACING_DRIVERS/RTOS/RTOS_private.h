@@ -10,6 +10,15 @@
   
 #define RTOS_u8UP_FLAG   1
 
+
+/*Comment!: TCB structure contain pointer to a void function (task),count represents Task's periodicity*/
+/*Comment!:  counter = (Task Period) / (Tick Time)  */
+struct TCB
+    {
+	void (*ptr)(void);
+	u8 periodicity;
+    };
+
 /*******************************************************/  
 /*****************  Private Functions  *****************/  
 /*******************************************************/  
@@ -18,7 +27,7 @@
 void RTOS_voidCallBack(void);
 
 /*Comment!:This function has the responsibility to execute tasks every system tick */
-void RTOS_voidTaskManger(struct TCB *Copy_PStructTcp);
+void RTOS_voidTaskManger(void);
 
   
 #endif  
