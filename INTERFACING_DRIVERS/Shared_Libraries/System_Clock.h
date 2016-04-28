@@ -9,6 +9,6 @@
 #define SHARED_LIBRARIES_SYSTEM_CLOCK_H_
 
 /*Comment!: System clock */
-#define F_CPU                4000000UL
+#define F_CPU                16000000UL
 
 #endif /* SHARED_LIBRARIES_SYSTEM_CLOCK_H_ */
