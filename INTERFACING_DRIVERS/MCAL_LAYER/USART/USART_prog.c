@@ -5,6 +5,7 @@
 #include"USART_interface.h"
 #include"USART_config.h"
 #include"USART_private.h"
+#include <avr/interrupt.h>
 
 /*Comment!: Pointer to call back function*/
 static void (*USART_PvoidUSARTRXISR)(void);
@@ -100,7 +101,8 @@ extern void USART_voidDisableRx(void)
     return;
     }
 
-ISR(__vector_13)
+//ISR(__vector_13)
+ISR(USART_RXC_vect)
     {
 
 #if USART_u8NUM_BITS_PER_DATA==8
